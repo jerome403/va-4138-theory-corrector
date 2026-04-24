@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VA Form 21-4138 Generator | Statement in Support of Claim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-900: #0a1628;
+            --navy-800: #1a2744;
+            --navy-700: #2a3a5a;
+            --navy-600: #3d4f6f;
+            --slate-100: #f1f5f9;
+            --slate-200: #e2e8f0;
+            --slate-300: #cbd5e1;
+            --slate-400: #94a3b8;
+            --slate-500: #64748b;
+            --gold-400: #d4a853;
+            --gold-500: #b8923d;
+            --gold-600: #9a7a30;
+            --success: #16a34a;
+            --warning: #ca8a04;
+            --error: #dc2626;
+            --white: #ffffff;
+            --font-serif: 'Source Serif 4', Georgia, serif;
+            --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'IBM Plex Mono', 'Consolas', monospace;
+            --shadow-sm: 0 1px 2px rgba(10, 22, 40, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(10, 22, 40, 0.1), 0 2px 4px -2px rgba(10, 22, 40, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(10, 22, 40, 0.1), 0 4px 6px -4px rgba(10, 22, 40, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(10, 22, 40, 0.1), 0 8px 10px -6px rgba(10, 22, 40, 0.1);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-sans);
+            background: linear-gradient(135deg, var(--slate-100) 0%, var(--slate-200) 100%);
+            color: var(--navy-800);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 100%);
+            color: var(--white);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-lg);
+        }
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .logo { display: flex; align-items: center; gap: 1rem; }
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gold-400);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-serif);
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--navy-900);
+        }
+        .logo-text h1 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        .logo-text p { font-size: 0.875rem; color: var(--slate-300); margin-top: 0.125rem; }
+        .header-actions { display: flex; gap: 0.75rem; }
+        .btn {
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.625rem 1.25rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-primary { background: var(--gold-400); color: var(--navy-900); }
+        .btn-primary:hover { background: var(--gold-500); transform: translateY(-1px); }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.2); }
+        .btn-danger { background: var(--error); color: var(--white); }
+        .btn-danger:hover { background: #b91c1c; }
+        .privacy-notice {
+            background: linear-gradient(90deg, var(--navy-700) 0%, var(--navy-800) 100%);
+            color: var(--slate-200);
+            padding: 0.75rem 2rem;
+            font-size: 0.8125rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .privacy-notice svg { width: 16px; height: 16px; flex-shrink: 0; }
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        @media (max-width: 1024px) { .main-container { grid-template-columns: 1fr; } }
+        .form-panel {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+        .progress-container {
+            background: var(--slate-100);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--slate-200);
+        }
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 14px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: var(--slate-300);
+        }
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .step-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--slate-300);
+            color: var(--slate-500);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .progress-step.active .step-number {
+            background: var(--gold-400);
+            color: var(--navy-900);
+            box-shadow: 0 0 0 4px rgba(212, 168, 83, 0.2);
+        }
+        .progress-step.completed .step-number { background: var(--success); color: var(--white); }
+        .step-label {
+            font-size: 0.6875rem;
+            font-weight: 500;
+            color: var(--slate-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .progress-step.active .step-label,
+        .progress-step.completed .step-label { color: var(--navy-800); }
+        .form-content { padding: 1.5rem; }
+        .form-section { display: none; animation: fadeIn 0.3s ease; }
+        .form-section.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .section-header { margin-bottom: 1.5rem; }
+        .section-header h2 {
+            font-family: var(--font-serif);
+            font-size: 1.375rem;
+            font-weight: 600;
+            color: var(--navy-900);
+            margin-bottom: 0.375rem;
+        }
+        .section-header p { font-size: 0.875rem; color: var(--slate-500); }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+        label {
+            display: block;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--navy-800);
+            margin-bottom: 0.375rem;
+        }
+        label .required { color: var(--error); margin-left: 0.25rem; }
+        .help-text { font-size: 0.75rem; color: var(--slate-500); margin-top: 0.25rem; }
+        input[type="text"], input[type="date"], select, textarea {
+            width: 100%;
+            padding: 0.625rem 0.875rem;
+            font-family: var(--font-sans);
+            font-size: 0.9375rem;
+            border: 1.5px solid var(--slate-300);
+            border-radius: 6px;
+            background: var(--white);
+            color: var(--navy-800);
+            transition: all 0.2s ease;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold-400);
+            box-shadow: 0 0 0 3px rgba(212, 168, 83, 0.15);
+        }
+        input::placeholder, textarea::placeholder { color: var(--slate-400); }
+        textarea { min-height: 100px; resize: vertical; }
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            padding-right: 2.5rem;
+        }
+        .citation-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+        .citation-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.375rem 0.75rem;
+            background: var(--slate-100);
+            border: 1px solid var(--slate-300);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            color: var(--navy-700);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .citation-tag:hover { background: var(--slate-200); }
+        .citation-tag.selected {
+            background: var(--navy-800);
+            border-color: var(--navy-800);
+            color: var(--white);
+        }
+        .evidence-entry {
+            background: var(--slate-100);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+        .evidence-entry .remove-entry {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: none;
+            background: var(--slate-200);
+            color: var(--slate-500);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .evidence-entry .remove-entry:hover { background: var(--error); color: var(--white); }
+        .add-entry-btn {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px dashed var(--slate-300);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--slate-500);
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .add-entry-btn:hover {
+            border-color: var(--gold-400);
+            color: var(--gold-600);
+            background: rgba(212, 168, 83, 0.05);
+        }
+        .question-box {
+            background: var(--slate-100);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .question-box textarea { background: var(--white); min-height: 80px; }
+        .question-label { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+        .question-letter {
+            width: 24px;
+            height: 24px;
+            background: var(--navy-800);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--slate-200);
+            margin-top: 1.5rem;
+        }
+        .btn-nav { padding: 0.75rem 1.5rem; }
+        .btn-nav-prev { background: var(--slate-200); color: var(--navy-700); }
+        .btn-nav-prev:hover { background: var(--slate-300); }
+        .btn-nav-next { background: var(--navy-800); color: var(--white); }
+        .btn-nav-next:hover { background: var(--navy-900); }
+        .preview-panel {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 120px);
+            display: flex;
+            flex-direction: column;
+        }
+        .preview-header {
+            background: var(--navy-900);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .preview-header h3 { font-family: var(--font-serif); font-size: 1.125rem; font-weight: 600; }
+        .preview-actions { display: flex; gap: 0.5rem; }
+        .preview-content { flex: 1; overflow-y: auto; padding: 1.5rem; }
+        .preview-document {
+            font-family: var(--font-serif);
+            font-size: 0.9375rem;
+            line-height: 1.75;
+            color: var(--navy-800);
+        }
+        .preview-document h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem 0;
+            color: var(--navy-900);
+        }
+        .preview-document h4:first-child { margin-top: 0; }
+        .preview-document p { margin-bottom: 1rem; }
+        .preview-document ul { margin: 0.75rem 0 0.75rem 1.5rem; }
+        .preview-document li { margin-bottom: 0.5rem; }
+        .preview-document .legal-cite {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            background: var(--slate-100);
+            padding: 0.125rem 0.375rem;
+            border-radius: 3px;
+        }
+        .preview-document .placeholder {
+            background: rgba(212, 168, 83, 0.2);
+            border: 1px dashed var(--gold-500);
+            padding: 0.125rem 0.375rem;
+            border-radius: 3px;
+            font-style: italic;
+        }
+        .preview-document .indent { margin-left: 1.5rem; }
+        .preview-empty { text-align: center; padding: 3rem 1.5rem; color: var(--slate-400); }
+        .preview-empty svg { width: 64px; height: 64px; margin-bottom: 1rem; opacity: 0.5; }
+        .tooltip-trigger {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            background: var(--slate-300);
+            color: var(--slate-600);
+            border-radius: 50%;
+            font-size: 0.625rem;
+            font-weight: 700;
+            cursor: help;
+            margin-left: 0.375rem;
+            position: relative;
+        }
+        .tooltip-trigger:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--navy-900);
+            color: var(--white);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 400;
+            white-space: normal;
+            max-width: 250px;
+            z-index: 100;
+            box-shadow: var(--shadow-lg);
+        }
+        .alert {
+            padding: 0.875rem 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+        }
+        .alert-info {
+            background: rgba(212, 168, 83, 0.1);
+            border: 1px solid rgba(212, 168, 83, 0.3);
+            color: var(--gold-600);
+        }
+        .alert-success {
+            background: rgba(22, 163, 74, 0.1);
+            border: 1px solid rgba(22, 163, 74, 0.3);
+            color: var(--success);
+        }
+        .alert svg { width: 20px; height: 20px; flex-shrink: 0; }
+        .copy-notification {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--navy-900);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .copy-notification.show { transform: translateY(0); opacity: 1; }
+        .copy-notification svg { width: 20px; height: 20px; color: var(--success); }
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 22, 40, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.show { opacity: 1; visibility: visible; }
+        .modal {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-xl);
+            max-width: 480px;
+            width: 90%;
+            padding: 1.5rem;
+            transform: scale(0.95);
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.show .modal { transform: scale(1); }
+        .modal h3 { font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 0.75rem; }
+        .modal p { color: var(--slate-600); margin-bottom: 1.5rem; }
+        .modal-actions { display: flex; gap: 0.75rem; justify-content: flex-end; }
+        @media (max-width: 768px) {
+            .header { padding: 1rem; }
+            .header-content { flex-direction: column; align-items: flex-start; }
+            .main-container { padding: 1rem; }
+            .preview-panel { position: static; max-height: none; }
+            .step-label { display: none; }
+        }
+        @media print {
+            .header, .form-panel, .preview-header, .privacy-notice { display: none; }
+            .main-container { display: block; padding: 0; }
+            .preview-panel { box-shadow: none; position: static; }
+            .preview-content { padding: 0; }
+            .preview-document { font-size: 12pt; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">VA</div>
+                <div class="logo-text">
+                    <h1>Form 21-4138 Generator</h1>
+                    <p>Statement in Support of Claim</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary" onclick="saveProgress(true)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                    Save Draft
+                </button>
+                <button class="btn btn-danger" onclick="showClearModal()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                    Clear All
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="privacy-notice">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span><strong>Privacy Notice:</strong> All data is stored locally in your browser only. No information is transmitted to any server.</span>
+    </div>
+
+    <div class="main-container">
+        <div class="form-panel">
+            <div class="progress-container">
+                <div class="progress-steps">
+                    <div class="progress-step active" data-step="1"><div class="step-number">1</div><span class="step-label">Claim Info</span></div>
+                    <div class="progress-step" data-step="2"><div class="step-number">2</div><span class="step-label">Condition</span></div>
+                    <div class="progress-step" data-step="3"><div class="step-number">3</div><span class="step-label">VSR Request</span></div>
+                    <div class="progress-step" data-step="4"><div class="step-number">4</div><span class="step-label">Evidence</span></div>
+                    <div class="progress-step" data-step="5"><div class="step-number">5</div><span class="step-label">Questions</span></div>
+                </div>
+            </div>
+
+            <div class="form-content">
+                <!-- Section 1: Claim Information -->
+                <div class="form-section active" id="section-1">
+                    <div class="section-header">
+                        <h2>Claim Information</h2>
+                        <p>Enter the basic claim and representative details</p>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Veteran Name <span class="required">*</span></label>
+                            <input type="text" id="veteranName" placeholder="e.g., John A. Smith" oninput="updatePreview()">
+                            <p class="help-text">Full legal name as shown on VA records</p>
+                        </div>
+                        <div class="form-group">
+                            <label>File Number / SSN <span class="tooltip-trigger" data-tooltip="Optional. Will appear as placeholder if left blank.">?</span></label>
+                            <input type="text" id="fileNumber" placeholder="Optional" oninput="updatePreview()">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Representative Name <span class="required">*</span></label>
+                            <input type="text" id="repName" placeholder="Your name" oninput="updatePreview()">
+                        </div>
+                        <div class="form-group">
+                            <label>Representative Capacity <span class="required">*</span></label>
+                            <select id="repCapacity" onchange="updatePreview()">
+                                <option value="">Select capacity...</option>
+                                <option value="accredited agent">Accredited Agent</option>
+                                <option value="accredited attorney">Accredited Attorney</option>
+                                <option value="accredited claims agent">Accredited Claims Agent</option>
+                                <option value="registered nurse (RN)">Registered Nurse (RN)</option>
+                                <option value="veterans service officer">Veterans Service Officer</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Form Type Being Supported <span class="required">*</span></label>
+                            <select id="formType" onchange="updatePreview()">
+                                <option value="">Select form...</option>
+                                <option value="526EZ">VA Form 21-526EZ (Disability Compensation)</option>
+                                <option value="0995">VA Form 20-0995 (Supplemental Claim)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Rating Decision <span class="tooltip-trigger" data-tooltip="Required for supplemental claims (0995).">?</span></label>
+                            <input type="date" id="ratingDate" oninput="updatePreview()">
+                        </div>
+                    </div>
+                    <div class="form-navigation">
+                        <div></div>
+                        <button class="btn btn-nav btn-nav-next" onclick="nextSection()">Continue to Condition <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+                    </div>
+                </div>
+
+                <!-- Section 2: Claimed Condition -->
+                <div class="form-section" id="section-2">
+                    <div class="section-header">
+                        <h2>Claimed Condition</h2>
+                        <p>Specify the condition and intended theory of entitlement</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Condition Label <span class="required">*</span> <span class="tooltip-trigger" data-tooltip="Enter the condition exactly as written on the original claim form.">?</span></label>
+                        <input type="text" id="conditionLabel" placeholder="e.g., sleep apnea, bilateral hearing loss, GERD" oninput="updatePreview()">
+                    </div>
+                    <div class="form-group">
+                        <label>Intended Theory of Entitlement <span class="required">*</span></label>
+                        <select id="intendedTheory" onchange="handleTheoryChange(); updatePreview()">
+                            <option value="">Select theory...</option>
+                            <option value="Direct Service Connection">Direct Service Connection</option>
+                            <option value="PACT Act Presumption">PACT Act Presumption</option>
+                            <option value="Gulf War MUCMI (38 C.F.R. § 3.317)">Gulf War MUCMI (38 C.F.R. § 3.317)</option>
+                            <option value="Presumption of Aggravation (38 U.S.C. § 1153)">Presumption of Aggravation (38 U.S.C. § 1153)</option>
+                            <option value="Secondary Connection - Caused By (38 C.F.R. § 3.310(a))">Secondary Connection - Caused By</option>
+                            <option value="Secondary Connection - Aggravated By (38 C.F.R. § 3.310(b))">Secondary Connection - Aggravated By</option>
+                            <option value="other">Other (specify below)</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="otherTheoryGroup" style="display: none;">
+                        <label>Specify Other Theory <span class="required">*</span></label>
+                        <input type="text" id="otherTheory" placeholder="Describe the theory of entitlement" oninput="updatePreview()">
+                    </div>
+                    <div class="form-group" id="secondaryConditionGroup" style="display: none;">
+                        <label>Primary Service-Connected Condition <span class="required">*</span> <span class="tooltip-trigger" data-tooltip="The already service-connected condition that caused or aggravated the claimed condition.">?</span></label>
+                        <input type="text" id="serviceConnectedCondition" placeholder="e.g., PTSD, diabetes mellitus type II" oninput="updatePreview()">
+                    </div>
+                    <div class="form-group">
+                        <label>Relevant Citations <span class="tooltip-trigger" data-tooltip="Select all applicable statutory and regulatory citations.">?</span></label>
+                        <div class="citation-tags" id="citationTags">
+                            <span class="citation-tag" data-citation="38 C.F.R. § 3.310" onclick="toggleCitation(this)">§ 3.310</span>
+                            <span class="citation-tag" data-citation="38 C.F.R. § 3.306" onclick="toggleCitation(this)">§ 3.306</span>
+                            <span class="citation-tag" data-citation="38 C.F.R. § 3.317" onclick="toggleCitation(this)">§ 3.317</span>
+                            <span class="citation-tag" data-citation="38 C.F.R. § 3.320" onclick="toggleCitation(this)">§ 3.320</span>
+                            <span class="citation-tag" data-citation="38 U.S.C. § 1153" onclick="toggleCitation(this)">§ 1153</span>
+                            <span class="citation-tag" data-citation="38 U.S.C. § 1117" onclick="toggleCitation(this)">§ 1117</span>
+                            <span class="citation-tag" data-citation="38 U.S.C. § 1119" onclick="toggleCitation(this)">§ 1119</span>
+                            <span class="citation-tag" data-citation="PACT Act" onclick="toggleCitation(this)">PACT Act</span>
+                        </div>
+                    </div>
+                    <div class="form-navigation">
+                        <button class="btn btn-nav btn-nav-prev" onclick="prevSection()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back</button>
+                        <button class="btn btn-nav btn-nav-next" onclick="nextSection()">Continue to VSR Request <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+                    </div>
+                </div>
+
+                <!-- Section 3: VSR Exam Request -->
+                <div class="form-section" id="section-3">
+                    <div class="section-header">
+                        <h2>VSR Exam Request Information</h2>
+                        <p>Document the mismatch between your claim and the AOJ's exam request</p>
+                    </div>
+                    <div class="alert alert-info">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                        <span>Copy the exact question text from the C&P exam request. This establishes the legal mismatch.</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Exam Type Requested</label>
+                        <select id="examType" onchange="updatePreview()">
+                            <option value="">Select exam type...</option>
+                            <option value="Respiratory">Respiratory</option>
+                            <option value="Gulf War General Medical">Gulf War General Medical</option>
+                            <option value="Gastrointestinal (GI)">Gastrointestinal (GI)</option>
+                            <option value="Foot/Lower Extremity">Foot/Lower Extremity</option>
+                            <option value="Ear/Hearing">Ear/Hearing</option>
+                            <option value="Mental Disorders">Mental Disorders</option>
+                            <option value="Sleep Apnea">Sleep Apnea</option>
+                            <option value="Skin">Skin</option>
+                            <option value="Back/Spine">Back/Spine</option>
+                            <option value="Knee/Lower Leg">Knee/Lower Leg</option>
+                            <option value="General Medical">General Medical</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Exact Question Text from VSR Request <span class="required">*</span> <span class="tooltip-trigger" data-tooltip="Copy and paste the exact medical opinion question from the exam request.">?</span></label>
+                        <textarea id="examQuestionText" placeholder="e.g., 'Is it at least as likely as not that the veteran's condition was caused by an in-service injury, event, or illness?'" oninput="detectRequestedTheory(); updatePreview()"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Theory Implied in VSR Request <span class="tooltip-trigger" data-tooltip="Based on the question text, what theory does the VSR appear to be requesting?">?</span></label>
+                        <select id="requestedTheory" onchange="updatePreview()">
+                            <option value="">Auto-detected or select...</option>
+                            <option value="Direct Service Connection">Direct Service Connection</option>
+                            <option value="Aggravation during service">Aggravation during service</option>
+                            <option value="Secondary connection (causation)">Secondary connection (causation)</option>
+                            <option value="Secondary aggravation">Secondary aggravation</option>
+                            <option value="Gulf War presumption">Gulf War presumption</option>
+                            <option value="General nexus opinion">General nexus opinion</option>
+                        </select>
+                        <p class="help-text" id="theoryDetectionNote"></p>
+                    </div>
+                    <div class="form-navigation">
+                        <button class="btn btn-nav btn-nav-prev" onclick="prevSection()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back</button>
+                        <button class="btn btn-nav btn-nav-next" onclick="nextSection()">Continue to Evidence <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+                    </div>
+                </div>
+
+                <!-- Section 4: Supporting Evidence -->
+                <div class="form-section" id="section-4">
+                    <div class="section-header">
+                        <h2>Supporting Evidence</h2>
+                        <p>Document key evidence that supports your intended theory</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Prior C&P Exam Findings</label>
+                        <textarea id="priorExamFindings" placeholder="e.g., 'November 2023 C&P examination diagnosed obstructive sleep apnea with a positive nexus opinion relating the condition to service-connected PTSD.' " oninput="updatePreview()"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Key Medical Records</label>
+                        <div id="medicalRecordsContainer">
+                            <div class="evidence-entry">
+                                <button class="remove-entry" onclick="removeEvidenceEntry(this)" style="display: none;">×</button>
+                                <div class="form-row">
+                                    <div class="form-group" style="margin-bottom: 0.5rem;">
+                                        <label style="font-size: 0.75rem;">Date</label>
+                                        <input type="date" class="record-date" oninput="updatePreview()">
+                                    </div>
+                                    <div class="form-group" style="margin-bottom: 0.5rem;">
+                                        <label style="font-size: 0.75rem;">Provider/Source</label>
+                                        <input type="text" class="record-provider" placeholder="e.g., VA Medical Center" oninput="updatePreview()">
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <label style="font-size: 0.75rem;">Summary</label>
+                                    <textarea class="record-summary" placeholder="Brief description of relevant finding" style="min-height: 60px;" oninput="updatePreview()"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="add-entry-btn" onclick="addMedicalRecordEntry()">+ Add Another Medical Record</button>
+                    </div>
+                    <div class="form-group">
+                        <label>Prior Rating Decision Language <span class="tooltip-trigger" data-tooltip="Include relevant language from prior rating decisions that supports your theory.">?</span></label>
+                        <textarea id="priorRatingLanguage" placeholder="Optional: Quote relevant language from prior rating decisions" oninput="updatePreview()"></textarea>
+                    </div>
+                    <div class="form-navigation">
+                        <button class="btn btn-nav btn-nav-prev" onclick="prevSection()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back</button>
+                        <button class="btn btn-nav btn-nav-next" onclick="nextSection()">Continue to Questions <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+                    </div>
+                </div>
+
+                <!-- Section 5: Medical Opinion Questions -->
+                <div class="form-section" id="section-5">
+                    <div class="section-header">
+                        <h2>Medical Opinion Questions</h2>
+                        <p>Specify the questions the examiner should answer</p>
+                    </div>
+                    <div class="alert alert-info" id="questionGeneratorAlert">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                        <span>Questions have been auto-generated based on your selected theory. You may edit them as needed.</span>
+                    </div>
+                    <div id="questionsContainer">
+                        <div class="question-box">
+                            <div class="question-label"><span class="question-letter">a</span><label style="margin-bottom: 0;">Question A <span class="required">*</span></label></div>
+                            <textarea id="questionA" placeholder="Enter the first medical opinion question" oninput="updatePreview()"></textarea>
+                        </div>
+                        <div class="question-box">
+                            <div class="question-label"><span class="question-letter">b</span><label style="margin-bottom: 0;">Question B</label></div>
+                            <textarea id="questionB" placeholder="Enter the second medical opinion question (optional)" oninput="updatePreview()"></textarea>
+                        </div>
+                        <div class="question-box">
+                            <div class="question-label"><span class="question-letter">c</span><label style="margin-bottom: 0;">Question C</label></div>
+                            <textarea id="questionC" placeholder="Enter the third medical opinion question (optional)" oninput="updatePreview()"></textarea>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="regenerateQuestions()" style="margin-top: 1rem; background: var(--slate-200); color: var(--navy-700);">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+                        Regenerate Default Questions
+                    </button>
+                    <div class="form-navigation">
+                        <button class="btn btn-nav btn-nav-prev" onclick="prevSection()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back</button>
+                        <button class="btn btn-primary btn-nav" onclick="finalizeDocument()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            Generate Final Document
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preview Panel -->
+        <div class="preview-panel">
+            <div class="preview-header">
+                <h3>Document Preview</h3>
+                <div class="preview-actions">
+                    <button class="btn btn-secondary" onclick="copyToClipboard()" style="padding: 0.5rem 0.875rem; font-size: 0.8125rem;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        Copy
+                    </button>
+                    <button class="btn btn-primary" onclick="downloadDocument()" style="padding: 0.5rem 0.875rem; font-size: 0.8125rem;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        Download
+                    </button>
+                </div>
+            </div>
+            <div class="preview-content">
+                <div class="preview-empty" id="previewEmpty">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    <p>Your VA Form 21-4138 will appear here as you complete the form.</p>
+                </div>
+                <div class="preview-document" id="previewDocument" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="copy-notification" id="copyNotification">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span>Document copied to clipboard!</span>
+    </div>
+
+    <div class="modal-overlay" id="clearModal">
+        <div class="modal">
+            <h3>Clear All Data?</h3>
+            <p>This will permanently delete all form data and saved drafts from your browser. This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="hideClearModal()" style="background: var(--slate-200); color: var(--navy-700);">Cancel</button>
+                <button class="btn btn-danger" onclick="clearAllData()">Clear All Data</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSection = 1;
+        const totalSections = 5;
+        let selectedCitations = [];
+
+        function nextSection() {
+            if (currentSection < totalSections) {
+                if (currentSection === 2) generateQuestions(document.getElementById('intendedTheory').value);
+                showSection(currentSection + 1);
+            }
+        }
+
+        function prevSection() {
+            if (currentSection > 1) showSection(currentSection - 1);
+        }
+
+        function showSection(sectionNum) {
+            document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(`section-${sectionNum}`).classList.add('active');
+            document.querySelectorAll('.progress-step').forEach(step => {
+                const stepNum = parseInt(step.dataset.step);
+                step.classList.remove('active', 'completed');
+                if (stepNum === sectionNum) step.classList.add('active');
+                else if (stepNum < sectionNum) step.classList.add('completed');
+            });
+            currentSection = sectionNum;
+            saveProgress();
+        }
+
+        function handleTheoryChange() {
+            const theory = document.getElementById('intendedTheory').value;
+            document.getElementById('otherTheoryGroup').style.display = theory === 'other' ? 'block' : 'none';
+            document.getElementById('secondaryConditionGroup').style.display = theory.includes('Secondary') ? 'block' : 'none';
+            autoSelectCitations(theory);
+        }
+
+        function autoSelectCitations(theory) {
+            document.querySelectorAll('.citation-tag').forEach(tag => tag.classList.remove('selected'));
+            selectedCitations = [];
+            const citationMap = {
+                'Secondary Connection - Caused By (38 C.F.R. § 3.310(a))': ['38 C.F.R. § 3.310'],
+                'Secondary Connection - Aggravated By (38 C.F.R. § 3.310(b))': ['38 C.F.R. § 3.310'],
+                'Presumption of Aggravation (38 U.S.C. § 1153)': ['38 U.S.C. § 1153', '38 C.F.R. § 3.306'],
+                'Gulf War MUCMI (38 C.F.R. § 3.317)': ['38 C.F.R. § 3.317', '38 U.S.C. § 1117'],
+                'PACT Act Presumption': ['PACT Act', '38 C.F.R. § 3.320']
+            };
+            (citationMap[theory] || []).forEach(citation => {
+                const tag = document.querySelector(`.citation-tag[data-citation="${citation}"]`);
+                if (tag) { tag.classList.add('selected'); selectedCitations.push(citation); }
+            });
+            updatePreview();
+        }
+
+        function toggleCitation(element) {
+            const citation = element.dataset.citation;
+            element.classList.toggle('selected');
+            if (element.classList.contains('selected')) selectedCitations.push(citation);
+            else selectedCitations = selectedCitations.filter(c => c !== citation);
+            updatePreview();
+        }
+
+        function generateQuestions(theoryType) {
+            const condition = document.getElementById('conditionLabel').value || '[CONDITION]';
+            const scCondition = document.getElementById('serviceConnectedCondition').value || '[SERVICE-CONNECTED CONDITION]';
+            let questions = { a: '', b: '', c: '' };
+            switch (theoryType) {
+                case 'Secondary Connection - Caused By (38 C.F.R. § 3.310(a))':
+                    questions.a = `Is it at least as likely as not (50% probability or greater) that the veteran's ${condition} was proximately caused by or is the result of the service-connected ${scCondition}?`;
+                    questions.b = `If so, please describe the medical mechanism or pathophysiology by which ${scCondition} caused or contributed to the development of ${condition}.`;
+                    questions.c = `What degree of additional disability, if any, resulted from this relationship?`;
+                    break;
+                case 'Secondary Connection - Aggravated By (38 C.F.R. § 3.310(b))':
+                    questions.a = `Is it at least as likely as not (50% probability or greater) that the veteran's ${condition} has been aggravated (permanently worsened beyond natural progression) by the service-connected ${scCondition}?`;
+                    questions.b = `If aggravated, please identify the baseline level of severity of ${condition} prior to aggravation and the current level of severity.`;
+                    questions.c = `What degree of additional disability resulted from this aggravation, measured from the baseline to current severity?`;
+                    break;
+                case 'Presumption of Aggravation (38 U.S.C. § 1153)':
+                    questions.a = `Is there clear and unmistakable evidence that the veteran's preexisting ${condition} was NOT aggravated beyond its natural progression during active military service?`;
+                    questions.b = `What was the baseline severity level of ${condition} at service entrance, and what is the current level of disability?`;
+                    questions.c = `If aggravated during service, what degree of additional disability resulted from the in-service aggravation?`;
+                    break;
+                case 'Gulf War MUCMI (38 C.F.R. § 3.317)':
+                    questions.a = `Does the veteran's chronic ${condition} meet the criteria for a medically unexplained chronic multisymptom illness (MUCMI) under 38 C.F.R. § 3.317(a)(2)(ii)?`;
+                    questions.b = `Are the veteran's symptoms part of a pattern consistent with an undiagnosed illness or MUCMI that cannot be attributed to any known clinical diagnosis?`;
+                    questions.c = `Have the symptoms been present for at least 6 months and manifested to a degree of 10 percent or more?`;
+                    break;
+                case 'PACT Act Presumption':
+                    questions.a = `Is the veteran's ${condition} a condition listed under the PACT Act presumptive conditions for toxic exposure?`;
+                    questions.b = `Is it at least as likely as not that the veteran's ${condition} is related to toxic exposure during service, including but not limited to burn pit exposure?`;
+                    break;
+                case 'Direct Service Connection':
+                    questions.a = `Is it at least as likely as not (50% probability or greater) that the veteran's ${condition} had its onset during active service or is otherwise causally or etiologically related to an in-service injury, event, or illness?`;
+                    questions.b = `Please provide a complete rationale for your opinion, including discussion of relevant service treatment records and post-service medical evidence.`;
+                    break;
+                default:
+                    questions.a = `Is it at least as likely as not (50% probability or greater) that the veteran's ${condition} is related to service?`;
+            }
+            document.getElementById('questionA').value = questions.a;
+            document.getElementById('questionB').value = questions.b || '';
+            document.getElementById('questionC').value = questions.c || '';
+            updatePreview();
+        }
+
+        function regenerateQuestions() {
+            const theory = document.getElementById('intendedTheory').value;
+            if (theory) generateQuestions(theory);
+        }
+
+        function detectRequestedTheory() {
+            const questionText = document.getElementById('examQuestionText').value.toLowerCase();
+            const theorySelect = document.getElementById('requestedTheory');
+            const noteElement = document.getElementById('theoryDetectionNote');
+            let detected = '', note = '';
+            if (questionText.includes('caused by') && questionText.includes('in-service')) { detected = 'Direct Service Connection'; note = 'Detected: Direct service connection question'; }
+            else if (questionText.includes('aggravated') && questionText.includes('service-connected')) { detected = 'Secondary aggravation'; note = 'Detected: Secondary aggravation question'; }
+            else if (questionText.includes('caused by') && questionText.includes('service-connected')) { detected = 'Secondary connection (causation)'; note = 'Detected: Secondary causation question'; }
+            else if (questionText.includes('aggravat') && questionText.includes('during service')) { detected = 'Aggravation during service'; note = 'Detected: In-service aggravation question'; }
+            else if (questionText.includes('gulf war') || questionText.includes('undiagnosed illness')) { detected = 'Gulf War presumption'; note = 'Detected: Gulf War presumption question'; }
+            else if (questionText.includes('nexus') || questionText.includes('related to service')) { detected = 'General nexus opinion'; note = 'Detected: General nexus question'; }
+            if (detected) { theorySelect.value = detected; noteElement.textContent = note; noteElement.style.color = 'var(--success)'; }
+            else noteElement.textContent = '';
+            updatePreview();
+        }
+
+        function addMedicalRecordEntry() {
+            const container = document.getElementById('medicalRecordsContainer');
+            const entry = document.createElement('div');
+            entry.className = 'evidence-entry';
+            entry.innerHTML = `<button class="remove-entry" onclick="removeEvidenceEntry(this)">×</button>
+                <div class="form-row"><div class="form-group" style="margin-bottom: 0.5rem;"><label style="font-size: 0.75rem;">Date</label><input type="date" class="record-date" oninput="updatePreview()"></div>
+                <div class="form-group" style="margin-bottom: 0.5rem;"><label style="font-size: 0.75rem;">Provider/Source</label><input type="text" class="record-provider" placeholder="e.g., VA Medical Center" oninput="updatePreview()"></div></div>
+                <div class="form-group" style="margin-bottom: 0;"><label style="font-size: 0.75rem;">Summary</label><textarea class="record-summary" placeholder="Brief description of relevant finding" style="min-height: 60px;" oninput="updatePreview()"></textarea></div>`;
+            container.appendChild(entry);
+            container.querySelectorAll('.evidence-entry').forEach(e => e.querySelector('.remove-entry').style.display = 'flex');
+        }
+
+        function removeEvidenceEntry(button) {
+            const entry = button.closest('.evidence-entry');
+            const container = entry.parentElement;
+            entry.remove();
+            const entries = container.querySelectorAll('.evidence-entry');
+            if (entries.length === 1) entries[0].querySelector('.remove-entry').style.display = 'none';
+            updatePreview();
+        }
+
+        function updatePreview() {
+            const previewEmpty = document.getElementById('previewEmpty');
+            const previewDoc = document.getElementById('previewDocument');
+            const data = gatherFormData();
+            if (!data.veteranName && !data.conditionLabel) { previewEmpty.style.display = 'block'; previewDoc.style.display = 'none'; return; }
+            previewEmpty.style.display = 'none';
+            previewDoc.style.display = 'block';
+            previewDoc.innerHTML = generateDocumentHTML(data);
+            saveProgress();
+        }
+
+        function gatherFormData() {
+            const medicalRecords = [];
+            document.querySelectorAll('.evidence-entry').forEach(entry => {
+                const date = entry.querySelector('.record-date').value;
+                const provider = entry.querySelector('.record-provider').value;
+                const summary = entry.querySelector('.record-summary').value;
+                if (date || provider || summary) medicalRecords.push({ date, provider, summary });
+            });
+            return {
+                veteranName: document.getElementById('veteranName').value || '[VETERAN NAME]',
+                fileNumber: document.getElementById('fileNumber').value || '[FILE NUMBER]',
+                repName: document.getElementById('repName').value || '[REPRESENTATIVE NAME]',
+                repCapacity: document.getElementById('repCapacity').value || '[CAPACITY]',
+                formType: document.getElementById('formType').value || '[FORM TYPE]',
+                ratingDate: document.getElementById('ratingDate').value,
+                conditionLabel: document.getElementById('conditionLabel').value || '[CONDITION]',
+                intendedTheory: document.getElementById('intendedTheory').value === 'other' ? document.getElementById('otherTheory').value : document.getElementById('intendedTheory').value || '[INTENDED THEORY]',
+                serviceConnectedCondition: document.getElementById('serviceConnectedCondition').value,
+                citations: selectedCitations,
+                examType: document.getElementById('examType').value,
+                examQuestionText: document.getElementById('examQuestionText').value || '[EXAM QUESTION TEXT]',
+                requestedTheory: document.getElementById('requestedTheory').value || '[REQUESTED THEORY]',
+                priorExamFindings: document.getElementById('priorExamFindings').value,
+                medicalRecords: medicalRecords,
+                priorRatingLanguage: document.getElementById('priorRatingLanguage').value,
+                questionA: document.getElementById('questionA').value,
+                questionB: document.getElementById('questionB').value,
+                questionC: document.getElementById('questionC').value
+            };
+        }
+
+        function generateDocumentHTML(data) {
+            const fp = (text) => (text.startsWith('[') && text.endsWith(']')) ? `<span class="placeholder">${text}</span>` : text;
+            const fc = (text) => `<span class="legal-cite">${text}</span>`;
+            let evidenceHTML = '';
+            if (data.priorExamFindings) evidenceHTML += `<li>${data.priorExamFindings}</li>`;
+            data.medicalRecords.forEach(r => { if (r.summary) { const ds = r.date ? new Date(r.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) : ''; evidenceHTML += `<li>${ds}${r.provider ? ` ${r.provider}` : ''}: ${r.summary}</li>`; } });
+            if (data.priorRatingLanguage) evidenceHTML += `<li>Prior rating decision: "${data.priorRatingLanguage}"</li>`;
+            if (!evidenceHTML) evidenceHTML = '<li><span class="placeholder">[Key evidence supporting the intended theory]</span></li>';
+            let questionsHTML = '';
+            if (data.questionA) questionsHTML += `<p class="indent">a. ${data.questionA}</p>`;
+            if (data.questionB) questionsHTML += `<p class="indent">b. ${data.questionB}</p>`;
+            if (data.questionC) questionsHTML += `<p class="indent">c. ${data.questionC}</p>`;
+            if (!questionsHTML) questionsHTML = '<p class="indent">a. <span class="placeholder">[Medical opinion question]</span></p>';
+            const citationsText = data.citations.length > 0 ? data.citations.map(c => fc(c)).join(', ') : fc('38 C.F.R. §§ 3.103, 3.159');
+            return `<p>I am submitting this statement as the ${fp(data.repCapacity)} pursuant to VA Form 21-22a on file, in support of the veteran's VA Form ${fp(data.formType)} for ${fp(data.conditionLabel)}.</p>
+                <h4>1. Clarification of Claimed Theory of Entitlement</h4>
+                <p>On VA Form ${fp(data.formType)}, the veteran claimed ${fp(data.conditionLabel)} under the following theory of entitlement: <strong>${fp(data.intendedTheory)}</strong>. This is the theory currently being pursued.</p>
+                <p>By law, VA must consider all reasonably raised theories of entitlement, including secondary service connection and aggravation, when supported by the record. See, e.g., ${citationsText}; ${fc('38 U.S.C. §§ 5103A, 5107')}.</p>
+                <h4>2. Mismatch Between Claimed Theory and Current Exam Request</h4>
+                <p>The AOJ's Compensation & Pension (C&P) medical opinion request for this condition asks:</p>
+                <p class="indent"><em>"${fp(data.examQuestionText)}"</em></p>
+                <p>This question is framed under <strong>${fp(data.requestedTheory)}</strong>, and does not direct the examiner to address the actual theory at issue: <strong>${fp(data.intendedTheory)}</strong>.</p>
+                <p>Because the exam request is misaligned with the theory reasonably raised by the veteran's filings and the evidence, any opinion that only answers the above question will not be adequate to decide the claim on the correct legal basis. VA's duty to assist includes obtaining a medical opinion that addresses the proper theory of entitlement. See ${fc('38 C.F.R. § 3.159(c)(4)')}; ${fc('38 C.F.R. § 3.103(a)')}.</p>
+                <h4>3. Key Evidence Supporting the Intended Theory</h4>
+                <p>Relevant evidence already of record includes:</p><ul>${evidenceHTML}</ul>
+                <p>These findings support the asserted theory of <strong>${fp(data.intendedTheory)}</strong> and demonstrate why the examiner must address that specific question.</p>
+                <h4>4. Requested Corrective Action and Opinion Questions</h4>
+                <p>To ensure an adequate medical opinion and compliance with VA's duty to assist, I respectfully request that the AOJ:</p>
+                <p class="indent">1) Issue a corrected medical opinion request that clearly states the proper theory of entitlement as <strong>${fp(data.intendedTheory)}</strong>; and</p>
+                <p class="indent">2) Direct the examiner to answer the following questions:</p>${questionsHTML}
+                <p>This clarification is submitted so that the requested examination and medical opinion directly address the correct theory of entitlement actually raised by the veteran's claim and the evidence of record, thereby allowing a fully informed adjudication.</p>`;
+        }
+
+        function generatePlainText() {
+            const data = gatherFormData();
+            let evidenceText = '';
+            if (data.priorExamFindings) evidenceText += `- ${data.priorExamFindings}\n`;
+            data.medicalRecords.forEach(r => { if (r.summary) { const ds = r.date ? new Date(r.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) : ''; evidenceText += `- ${ds}${r.provider ? ` ${r.provider}` : ''}: ${r.summary}\n`; } });
+            if (data.priorRatingLanguage) evidenceText += `- Prior rating decision: "${data.priorRatingLanguage}"\n`;
+            if (!evidenceText) evidenceText = '- [Key evidence supporting the intended theory]\n';
+            let questionsText = '';
+            if (data.questionA) questionsText += `   a. ${data.questionA}\n`;
+            if (data.questionB) questionsText += `   b. ${data.questionB}\n`;
+            if (data.questionC) questionsText += `   c. ${data.questionC}\n`;
+            if (!questionsText) questionsText = '   a. [Medical opinion question]\n';
+            const citationsText = data.citations.length > 0 ? data.citations.join(', ') : '38 C.F.R. §§ 3.103, 3.159';
+            return `VA FORM 21-4138 - STATEMENT IN SUPPORT OF CLAIM
+
+I am submitting this statement as the ${data.repCapacity} pursuant to VA Form 21-22a on file, in support of the veteran's VA Form ${data.formType} for ${data.conditionLabel}.
+
+1. CLARIFICATION OF CLAIMED THEORY OF ENTITLEMENT
+
+On VA Form ${data.formType}, the veteran claimed ${data.conditionLabel} under the following theory of entitlement: ${data.intendedTheory}. This is the theory currently being pursued.
+
+By law, VA must consider all reasonably raised theories of entitlement, including secondary service connection and aggravation, when supported by the record. See, e.g., ${citationsText}; 38 U.S.C. §§ 5103A, 5107.
+
+2. MISMATCH BETWEEN CLAIMED THEORY AND CURRENT EXAM REQUEST
+
+The AOJ's Compensation & Pension (C&P) medical opinion request for this condition asks:
+
+"${data.examQuestionText}"
+
+This question is framed under ${data.requestedTheory}, and does not direct the examiner to address the actual theory at issue: ${data.intendedTheory}.
+
+Because the exam request is misaligned with the theory reasonably raised by the veteran's filings and the evidence, any opinion that only answers the above question will not be adequate to decide the claim on the correct legal basis. VA's duty to assist includes obtaining a medical opinion that addresses the proper theory of entitlement. See 38 C.F.R. § 3.159(c)(4); 38 C.F.R. § 3.103(a).
+
+3. KEY EVIDENCE SUPPORTING THE INTENDED THEORY
+
+Relevant evidence already of record includes:
+
+${evidenceText}
+These findings support the asserted theory of ${data.intendedTheory} and demonstrate why the examiner must address that specific question.
+
+4. REQUESTED CORRECTIVE ACTION AND OPINION QUESTIONS
+
+To ensure an adequate medical opinion and compliance with VA's duty to assist, I respectfully request that the AOJ:
+
+   1) Issue a corrected medical opinion request that clearly states the proper theory of entitlement as ${data.intendedTheory}; and
+
+   2) Direct the examiner to answer the following questions:
+
+${questionsText}
+This clarification is submitted so that the requested examination and medical opinion directly address the correct theory of entitlement actually raised by the veteran's claim and the evidence of record, thereby allowing a fully informed adjudication.
+
+---
+Submitted by: ${data.repName}
+Date: ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+`;
+        }
+
+        function copyToClipboard() {
+            navigator.clipboard.writeText(generatePlainText()).then(() => showCopyNotification()).catch(() => {
+                const ta = document.createElement('textarea'); ta.value = generatePlainText(); document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); showCopyNotification();
+            });
+        }
+
+        function showCopyNotification() {
+            const n = document.getElementById('copyNotification'); n.classList.add('show'); setTimeout(() => n.classList.remove('show'), 3000);
+        }
+
+        function downloadDocument() {
+            const data = gatherFormData();
+            const fn = `VA-4138-${data.conditionLabel.replace(/[^a-z0-9]/gi, '-').toLowerCase()}-${new Date().toISOString().split('T')[0]}.txt`;
+            const blob = new Blob([generatePlainText()], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.href = url; a.download = fn; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+        }
+
+        function finalizeDocument() {
+            updatePreview();
+            if (window.innerWidth <= 1024) document.querySelector('.preview-panel').scrollIntoView({ behavior: 'smooth' });
+            const alert = document.createElement('div'); alert.className = 'alert alert-success';
+            alert.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>Document ready!</strong> Use the Copy or Download buttons in the preview panel to export your VA Form 21-4138.</span>`;
+            const section = document.getElementById('section-5');
+            const existing = section.querySelector('.alert-success'); if (existing) existing.remove();
+            section.insertBefore(alert, section.querySelector('.section-header').nextSibling);
+        }
+
+        function saveProgress(showNotification = false) {
+            const data = { 
+                currentSection: currentSection, 
+                veteranName: document.getElementById('veteranName').value, 
+                fileNumber: document.getElementById('fileNumber').value, 
+                repName: document.getElementById('repName').value, 
+                repCapacity: document.getElementById('repCapacity').value, 
+                formType: document.getElementById('formType').value, 
+                ratingDate: document.getElementById('ratingDate').value, 
+                conditionLabel: document.getElementById('conditionLabel').value, 
+                intendedTheory: document.getElementById('intendedTheory').value, 
+                otherTheory: document.getElementById('otherTheory').value, 
+                serviceConnectedCondition: document.getElementById('serviceConnectedCondition').value, 
+                selectedCitations: selectedCitations, 
+                examType: document.getElementById('examType').value, 
+                examQuestionText: document.getElementById('examQuestionText').value, 
+                requestedTheory: document.getElementById('requestedTheory').value, 
+                priorExamFindings: document.getElementById('priorExamFindings').value, 
+                priorRatingLanguage: document.getElementById('priorRatingLanguage').value, 
+                questionA: document.getElementById('questionA').value, 
+                questionB: document.getElementById('questionB').value, 
+                questionC: document.getElementById('questionC').value, 
+                medicalRecords: getMedicalRecordsData(), 
+                savedAt: new Date().toISOString() 
+            };
+            try { 
+                localStorage.setItem('va4138Draft', JSON.stringify(data));
+                console.log('Draft saved:', data);
+                if (showNotification) {
+                    showSaveNotification();
+                }
+            } catch (e) { 
+                console.error('Failed to save draft:', e);
+                alert('Failed to save draft. Your browser may have localStorage disabled.');
+            }
+        }
+        
+        function showSaveNotification() {
+            const n = document.getElementById('copyNotification');
+            n.querySelector('span').textContent = 'Draft saved successfully!';
+            n.classList.add('show');
+            setTimeout(() => {
+                n.classList.remove('show');
+                n.querySelector('span').textContent = 'Document copied to clipboard!';
+            }, 2500);
+        }
+
+        function getMedicalRecordsData() {
+            const records = [];
+            document.querySelectorAll('.evidence-entry').forEach(entry => records.push({ date: entry.querySelector('.record-date').value, provider: entry.querySelector('.record-provider').value, summary: entry.querySelector('.record-summary').value }));
+            return records;
+        }
+
+        function loadProgress() {
+            try {
+                const saved = localStorage.getItem('va4138Draft'); 
+                if (!saved) {
+                    console.log('No saved draft found');
+                    return;
+                }
+                const data = JSON.parse(saved);
+                console.log('Loading saved draft:', data);
+                
+                if (data.veteranName) document.getElementById('veteranName').value = data.veteranName;
+                if (data.fileNumber) document.getElementById('fileNumber').value = data.fileNumber;
+                if (data.repName) document.getElementById('repName').value = data.repName;
+                if (data.repCapacity) document.getElementById('repCapacity').value = data.repCapacity;
+                if (data.formType) document.getElementById('formType').value = data.formType;
+                if (data.ratingDate) document.getElementById('ratingDate').value = data.ratingDate;
+                if (data.conditionLabel) document.getElementById('conditionLabel').value = data.conditionLabel;
+                if (data.intendedTheory) { 
+                    document.getElementById('intendedTheory').value = data.intendedTheory; 
+                    handleTheoryChange(); 
+                }
+                if (data.otherTheory) document.getElementById('otherTheory').value = data.otherTheory;
+                if (data.serviceConnectedCondition) document.getElementById('serviceConnectedCondition').value = data.serviceConnectedCondition;
+                if (data.examType) document.getElementById('examType').value = data.examType;
+                if (data.examQuestionText) document.getElementById('examQuestionText').value = data.examQuestionText;
+                if (data.requestedTheory) document.getElementById('requestedTheory').value = data.requestedTheory;
+                if (data.priorExamFindings) document.getElementById('priorExamFindings').value = data.priorExamFindings;
+                if (data.priorRatingLanguage) document.getElementById('priorRatingLanguage').value = data.priorRatingLanguage;
+                if (data.questionA) document.getElementById('questionA').value = data.questionA;
+                if (data.questionB) document.getElementById('questionB').value = data.questionB;
+                if (data.questionC) document.getElementById('questionC').value = data.questionC;
+                
+                if (data.selectedCitations && Array.isArray(data.selectedCitations)) { 
+                    selectedCitations = data.selectedCitations; 
+                    data.selectedCitations.forEach(c => { 
+                        const tag = document.querySelector(`.citation-tag[data-citation="${c}"]`); 
+                        if (tag) tag.classList.add('selected'); 
+                    }); 
+                }
+                
+                if (data.medicalRecords && data.medicalRecords.length > 0) {
+                    const container = document.getElementById('medicalRecordsContainer'); 
+                    container.innerHTML = '';
+                    data.medicalRecords.forEach((r, i) => {
+                        const entry = document.createElement('div'); 
+                        entry.className = 'evidence-entry';
+                        entry.innerHTML = `<button class="remove-entry" onclick="removeEvidenceEntry(this)" style="${i === 0 && data.medicalRecords.length === 1 ? 'display: none;' : ''}">×</button><div class="form-row"><div class="form-group" style="margin-bottom: 0.5rem;"><label style="font-size: 0.75rem;">Date</label><input type="date" class="record-date" value="${r.date || ''}" oninput="updatePreview()"></div><div class="form-group" style="margin-bottom: 0.5rem;"><label style="font-size: 0.75rem;">Provider/Source</label><input type="text" class="record-provider" placeholder="e.g., VA Medical Center" value="${r.provider || ''}" oninput="updatePreview()"></div></div><div class="form-group" style="margin-bottom: 0;"><label style="font-size: 0.75rem;">Summary</label><textarea class="record-summary" placeholder="Brief description of relevant finding" style="min-height: 60px;" oninput="updatePreview()">${r.summary || ''}</textarea></div>`;
+                        container.appendChild(entry);
+                    });
+                }
+                
+                if (data.currentSection && data.currentSection > 0 && data.currentSection <= 5) {
+                    showSection(data.currentSection);
+                }
+                
+                updatePreview();
+                console.log('Draft loaded successfully');
+            } catch (e) {
+                console.error('Failed to load draft:', e);
+            }
+        }
+
+        function showClearModal() { document.getElementById('clearModal').classList.add('show'); }
+        function hideClearModal() { document.getElementById('clearModal').classList.remove('show'); }
+
+        function clearAllData() {
+            try { localStorage.removeItem('va4138Draft'); } catch (e) {}
+            document.querySelectorAll('input, textarea, select').forEach(el => { if (el.type === 'text' || el.type === 'date' || el.tagName === 'TEXTAREA') el.value = ''; else if (el.tagName === 'SELECT') el.selectedIndex = 0; });
+            selectedCitations = [];
+            document.querySelectorAll('.citation-tag').forEach(tag => tag.classList.remove('selected'));
+            document.getElementById('medicalRecordsContainer').innerHTML = `<div class="evidence-entry"><button class="remove-entry" onclick="removeEvidenceEntry(this)" style="display: none;">×</button><div class="form-row"><div class="form-group" style="margin-bottom: 0.5rem;"><label style="font-size: 0.75rem;">Date</label><input type="date" class="record-date" oninput="updatePreview()"></div><div class="form-group" style="margin-bottom: 0.5rem;"><label style="font-size: 0.75rem;">Provider/Source</label><input type="text" class="record-provider" placeholder="e.g., VA Medical Center" oninput="updatePreview()"></div></div><div class="form-group" style="margin-bottom: 0;"><label style="font-size: 0.75rem;">Summary</label><textarea class="record-summary" placeholder="Brief description of relevant finding" style="min-height: 60px;" oninput="updatePreview()"></textarea></div></div>`;
+            document.getElementById('otherTheoryGroup').style.display = 'none';
+            document.getElementById('secondaryConditionGroup').style.display = 'none';
+            showSection(1);
+            updatePreview();
+            hideClearModal();
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); saveProgress(true); }
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); if (currentSection < totalSections) nextSection(); else finalizeDocument(); }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() { loadProgress(); updatePreview(); });
+        window.addEventListener('beforeunload', function() { const data = gatherFormData(); if (data.veteranName !== '[VETERAN NAME]' || data.conditionLabel !== '[CONDITION]') saveProgress(); });
+    </script>
+</body>
+</html>
