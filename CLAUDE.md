@@ -92,12 +92,16 @@ case-insensitively; `#` and blank lines are ignored.
 ## Deployment & sync — the #1 footgun: two copies drift
 
 - **Source of truth = this git/APPS repo.** Edit and commit HERE.
-- A **Desktop working copy** exists so the tool survives moving off OneDrive, with a
-  shortcut (`4138 Theory Corrector.lnk`) pointing at the **Desktop** copy. It is a
-  **derivative — never edit it directly; it gets overwritten.**
-- **A single HTML file in two places WILL drift.** After any change here, run
-  **`sync-to-desktop.ps1`** to refresh the Desktop copy. Treat "synced to Desktop" as
-  part of "done" (see standing rule).
+- **Two Desktop working copies** exist (each with a `4138 Theory Corrector.lnk`
+  shortcut pointing at its own copy) so the tool survives moving off OneDrive:
+  the shell Desktop (`…\OneDrive\Desktop`, the visible one) and the local profile
+  Desktop (`C:\Users\<you>\Desktop`, a non-synced hedge — not shown on screen while
+  OneDrive Desktop redirection is on). Both are **derivatives — never edit directly;
+  they get overwritten.**
+- **A single HTML file in three places WILL drift.** After any change here, run
+  **`sync-to-desktop.ps1`** — it refreshes BOTH Desktop copies from the repo (and
+  dedupes if the two paths ever merge). Treat "synced to Desktop" as part of "done"
+  (see standing rule).
 
 ## impeccable design loop (for any front-end work)
 
