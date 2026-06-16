@@ -550,6 +550,17 @@
                         <h2>Claim Information</h2>
                         <p>Enter the basic claim and representative details</p>
                     </div>
+                    <div class="form-group" id="loadProfileGroup">
+                        <label>Import Veteran Profile <span class="tooltip-trigger" data-tooltip="Load a Client_Data.txt produced by va-form-filler to auto-fill Veteran Name, File Number, and Mailing Address. All other fields stay manual. The file is read in your browser only — nothing leaves your computer.">?</span></label>
+                        <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+                            <button type="button" class="btn" style="background: var(--navy-800); color: var(--white);" onclick="document.getElementById('profileFileInput').click()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                Load Profile
+                            </button>
+                            <span class="help-text" id="profileLoadStatus" style="margin-top:0;">Select a client's Client_Data.txt to auto-fill identity fields.</span>
+                        </div>
+                        <input type="file" id="profileFileInput" accept=".txt,text/plain" style="display:none" onchange="handleProfileFile(event)">
+                    </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label>Veteran Name <span class="required">*</span></label>
@@ -560,6 +571,11 @@
                             <label>File Number / SSN <span class="tooltip-trigger" data-tooltip="Optional. Will appear as placeholder if left blank.">?</span></label>
                             <input type="text" id="fileNumber" placeholder="Optional" oninput="updatePreview()">
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Veteran Mailing Address <span class="tooltip-trigger" data-tooltip="Optional. Auto-filled from a loaded profile. Appears in the statement's identification caption.">?</span></label>
+                        <input type="text" id="mailingAddress" placeholder="e.g., 123 Main St, Anytown, WA 00000" oninput="updatePreview()">
+                        <p class="help-text">Street, city, state, ZIP — as it should appear on the filing.</p>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
@@ -827,6 +843,86 @@
         const totalSections = 5;
         let selectedCitations = [];
 
+        // ---- Veteran profile import (Client_Data.txt from va-form-filler) ----
+        // Parses a flat key=value text file IN-PAGE via FileReader. The file is
+        // never uploaded; nothing leaves the machine. Only identity/case fields
+        // are auto-filled — every argument field stays manual.
+        function parseProfileText(text) {
+            const map = {};
+            (text || '').split(/\r?\n/).forEach(line => {
+                if (!line || line.trim().startsWith('#')) return;
+                const eq = line.indexOf('=');
+                if (eq === -1) return;
+                const key = line.slice(0, eq).trim().toLowerCase();
+                const value = line.slice(eq + 1).trim();
+                if (key) map[key] = value;
+            });
+            return map;
+        }
+
+        // Map the profile to the three identity fields, with fallbacks that
+        // assemble Name / Address from their component keys when the populated
+        // single-field value is absent.
+        function composeFromProfile(map) {
+            let name = map.name || '';
+            if (!name) {
+                name = [map.firstname, map.middleinitial, map.lastname].filter(Boolean).join(' ').trim();
+            }
+            let address = map.address || '';
+            if (!address) {
+                const line1 = [map.street, map.apt].filter(Boolean).join(', ');
+                const cityState = [map.city, map.state].filter(Boolean).join(', ');
+                const line2 = [cityState, map.zip].filter(Boolean).join(' ').trim();
+                address = [line1, line2, map.country].filter(Boolean).join(', ').trim();
+            }
+            return { name, fileNumber: map.filenumber || '', address };
+        }
+
+        // Apply mapped values. Profile values fill the identity fields; fields the
+        // profile can't supply are left exactly as manually entered (the fallback).
+        // EffectiveDate is intentionally NOT mapped to ratingDate (different legal
+        // meaning). Returns the human-readable list of fields that were filled.
+        function applyProfileData(map) {
+            const p = composeFromProfile(map);
+            const filled = [];
+            if (p.name) { document.getElementById('veteranName').value = p.name; filled.push('Veteran Name'); }
+            if (p.fileNumber) { document.getElementById('fileNumber').value = p.fileNumber; filled.push('File Number'); }
+            if (p.address) { document.getElementById('mailingAddress').value = p.address; filled.push('Mailing Address'); }
+            updatePreview();
+            saveProgress();
+            return filled;
+        }
+
+        function handleProfileFile(event) {
+            const input = event.target;
+            const file = input.files && input.files[0];
+            const status = document.getElementById('profileLoadStatus');
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const filled = applyProfileData(parseProfileText(e.target.result));
+                    if (filled.length) {
+                        status.textContent = 'Loaded profile — filled ' + filled.join(', ') + '. Remaining fields are manual.';
+                        status.style.color = 'var(--success)';
+                    } else {
+                        status.textContent = 'No matching identity fields found (expected Name, FileNumber, Address).';
+                        status.style.color = 'var(--warning)';
+                    }
+                } catch (err) {
+                    status.textContent = 'Could not read that file. Make sure it is a Client_Data.txt profile.';
+                    status.style.color = 'var(--error)';
+                }
+                input.value = ''; // allow re-loading the same file
+            };
+            reader.onerror = function() {
+                status.textContent = 'Could not read that file.';
+                status.style.color = 'var(--error)';
+                input.value = '';
+            };
+            reader.readAsText(file);
+        }
+
         function nextSection() {
             if (currentSection < totalSections) {
                 if (currentSection === 2) generateQuestions(document.getElementById('intendedTheory').value);
@@ -989,6 +1085,7 @@
             return {
                 veteranName: document.getElementById('veteranName').value || '[VETERAN NAME]',
                 fileNumber: document.getElementById('fileNumber').value || '[FILE NUMBER]',
+                mailingAddress: document.getElementById('mailingAddress').value || '[MAILING ADDRESS]',
                 repName: document.getElementById('repName').value || '[REPRESENTATIVE NAME]',
                 repCapacity: document.getElementById('repCapacity').value || '[CAPACITY]',
                 formType: document.getElementById('formType').value || '[FORM TYPE]',
@@ -1023,7 +1120,8 @@
             if (data.questionC) questionsHTML += `<p class="indent">c. ${data.questionC}</p>`;
             if (!questionsHTML) questionsHTML = '<p class="indent">a. <span class="placeholder">[Medical opinion question]</span></p>';
             const citationsText = data.citations.length > 0 ? data.citations.map(c => fc(c)).join(', ') : fc('38 C.F.R. §§ 3.103, 3.159');
-            return `<p>I am submitting this statement as the ${fp(data.repCapacity)} pursuant to VA Form 21-22a on file, in support of the veteran's VA Form ${fp(data.formType)} for ${fp(data.conditionLabel)}.</p>
+            return `<p style="margin-bottom: 1.25rem;"><strong>Veteran:</strong> ${fp(data.veteranName)}<br><strong>VA File Number:</strong> ${fp(data.fileNumber)}<br><strong>Mailing Address:</strong> ${fp(data.mailingAddress)}</p>
+                <p>I am submitting this statement as the ${fp(data.repCapacity)} pursuant to VA Form 21-22a on file, in support of the veteran's VA Form ${fp(data.formType)} for ${fp(data.conditionLabel)}.</p>
                 <h4>1. Clarification of Claimed Theory of Entitlement</h4>
                 <p>On VA Form ${fp(data.formType)}, the veteran claimed ${fp(data.conditionLabel)} under the following theory of entitlement: <strong>${fp(data.intendedTheory)}</strong>. This is the theory currently being pursued.</p>
                 <p>By law, VA must consider all reasonably raised theories of entitlement, including secondary service connection and aggravation, when supported by the record. See, e.g., ${citationsText}; ${fc('38 U.S.C. §§ 5103A, 5107')}.</p>
@@ -1056,6 +1154,10 @@
             if (!questionsText) questionsText = '   a. [Medical opinion question]\n';
             const citationsText = data.citations.length > 0 ? data.citations.join(', ') : '38 C.F.R. §§ 3.103, 3.159';
             return `VA FORM 21-4138 - STATEMENT IN SUPPORT OF CLAIM
+
+Veteran: ${data.veteranName}
+VA File Number: ${data.fileNumber}
+Mailing Address: ${data.mailingAddress}
 
 I am submitting this statement as the ${data.repCapacity} pursuant to VA Form 21-22a on file, in support of the veteran's VA Form ${data.formType} for ${data.conditionLabel}.
 
@@ -1131,8 +1233,9 @@ Date: ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', 
             const data = { 
                 currentSection: currentSection, 
                 veteranName: document.getElementById('veteranName').value, 
-                fileNumber: document.getElementById('fileNumber').value, 
-                repName: document.getElementById('repName').value, 
+                fileNumber: document.getElementById('fileNumber').value,
+                mailingAddress: document.getElementById('mailingAddress').value,
+                repName: document.getElementById('repName').value,
                 repCapacity: document.getElementById('repCapacity').value, 
                 formType: document.getElementById('formType').value, 
                 ratingDate: document.getElementById('ratingDate').value, 
@@ -1192,6 +1295,7 @@ Date: ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', 
                 
                 if (data.veteranName) document.getElementById('veteranName').value = data.veteranName;
                 if (data.fileNumber) document.getElementById('fileNumber').value = data.fileNumber;
+                if (data.mailingAddress) document.getElementById('mailingAddress').value = data.mailingAddress;
                 if (data.repName) document.getElementById('repName').value = data.repName;
                 if (data.repCapacity) document.getElementById('repCapacity').value = data.repCapacity;
                 if (data.formType) document.getElementById('formType').value = data.formType;
@@ -1253,6 +1357,8 @@ Date: ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', 
             document.getElementById('medicalRecordsContainer').innerHTML = `<div class="evidence-entry"><button class="remove-entry" onclick="removeEvidenceEntry(this)" style="display: none;">×</button><div class="form-row"><div class="form-group" style="margin-bottom: 0.5rem;"><label style="font-size: 0.75rem;">Date</label><input type="date" class="record-date" oninput="updatePreview()"></div><div class="form-group" style="margin-bottom: 0.5rem;"><label style="font-size: 0.75rem;">Provider/Source</label><input type="text" class="record-provider" placeholder="e.g., VA Medical Center" oninput="updatePreview()"></div></div><div class="form-group" style="margin-bottom: 0;"><label style="font-size: 0.75rem;">Summary</label><textarea class="record-summary" placeholder="Brief description of relevant finding" style="min-height: 60px;" oninput="updatePreview()"></textarea></div></div>`;
             document.getElementById('otherTheoryGroup').style.display = 'none';
             document.getElementById('secondaryConditionGroup').style.display = 'none';
+            const profileStatus = document.getElementById('profileLoadStatus');
+            if (profileStatus) { profileStatus.textContent = "Select a client's Client_Data.txt to auto-fill identity fields."; profileStatus.style.color = ''; }
             showSection(1);
             updatePreview();
             hideClearModal();

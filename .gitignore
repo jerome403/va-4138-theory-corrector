@@ -1,0 +1,14 @@
+# Machine-local Claude Code settings (e.g. the impeccable after-edit hook path)
+.claude/settings.local.json
+
+# Vendored impeccable skill — reinstallable, not part of the project source.
+# Reinstall with: npx impeccable install --providers=claude -y
+.claude/skills/
+
+# impeccable local config / cache, if present
+.impeccable/
+
+# OS / editor cruft
+Thumbs.db
+Desktop.ini
+.DS_Store
