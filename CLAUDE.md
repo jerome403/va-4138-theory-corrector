@@ -41,6 +41,11 @@ This tool handles **real veteran PII**. The rules are non-negotiable:
   there is no `theories` object. Add a theory by adding a `case`.
 - **Profile import:** `handleProfileFile` → `parseProfileText` → `applyProfileData`.
 
+**For substantial legal/feature work, use the `va-4138-drafting-architect` agent**
+(`.claude/agents/`). It owns the theory→corrected-questions logic, the citations, the
+statement template, and the profile mapping — and briefs-then-builds with check-ins.
+Pure visual polish goes to the impeccable loop instead.
+
 ### Adding/renaming a form field is a MULTI-FUNCTION change
 
 A new field touches **all of** `gatherFormData`, `saveProgress`, `loadProgress`, and
