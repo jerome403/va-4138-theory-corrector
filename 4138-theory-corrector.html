@@ -561,21 +561,89 @@
                         </div>
                         <input type="file" id="profileFileInput" accept=".txt,text/plain" style="display:none" onchange="handleProfileFile(event)">
                     </div>
-                    <div class="form-row">
+                    <div class="form-group" id="templateGroup">
+                        <label>Client Template <span class="tooltip-trigger" data-tooltip="Save this veteran's identity fields as a reusable template, then load them next time instead of re-typing. Stored locally in your browser only — never transmitted.">?</span></label>
+                        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center;">
+                            <select id="templateSelect" onchange="loadTemplate(this.value)" style="flex:1; min-width:180px;">
+                                <option value="">Load saved template…</option>
+                            </select>
+                            <button type="button" class="btn" style="background: var(--navy-800); color: var(--white);" onclick="saveTemplatePrompt()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                                Save as Template
+                            </button>
+                            <button type="button" class="btn" style="background: var(--slate-200); color: var(--navy-700);" onclick="deleteTemplate()">Delete</button>
+                        </div>
+                        <p class="help-text" id="templateStatus" style="margin-top:0.375rem;">Templates store identity fields only and stay on this device.</p>
+                    </div>
+                    <div style="display:grid; grid-template-columns: 2fr 1fr 2fr; gap:1rem;">
                         <div class="form-group">
-                            <label>Veteran Name <span class="required">*</span></label>
-                            <input type="text" id="veteranName" placeholder="e.g., John A. Smith" oninput="updatePreview()">
-                            <p class="help-text">Full legal name as shown on VA records</p>
+                            <label>First Name <span class="required">*</span></label>
+                            <input type="text" id="firstName" placeholder="e.g., John" oninput="updatePreview()">
                         </div>
                         <div class="form-group">
-                            <label>File Number / SSN <span class="tooltip-trigger" data-tooltip="Optional. Will appear as placeholder if left blank.">?</span></label>
-                            <input type="text" id="fileNumber" placeholder="Optional" oninput="updatePreview()">
+                            <label>M.I.</label>
+                            <input type="text" id="middleInitial" maxlength="1" placeholder="A" oninput="updatePreview()">
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name <span class="required">*</span></label>
+                            <input type="text" id="lastName" placeholder="e.g., Smith" oninput="updatePreview()">
+                        </div>
+                    </div>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:1rem;">
+                        <div class="form-group">
+                            <label>Social Security Number <span class="tooltip-trigger" data-tooltip="Optional. Auto-formats as ###-##-####. Splits into the three SSN boxes on the form.">?</span></label>
+                            <input type="text" id="ssn" inputmode="numeric" placeholder="123-45-6789" oninput="formatSSN(this); updatePreview()">
+                        </div>
+                        <div class="form-group">
+                            <label>VA File Number</label>
+                            <input type="text" id="fileNumber" placeholder="If applicable" oninput="updatePreview()">
+                        </div>
+                        <div class="form-group">
+                            <label>Service Number</label>
+                            <input type="text" id="serviceNumber" placeholder="If applicable" oninput="updatePreview()">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" id="dob" oninput="updatePreview()">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="text" id="phone" inputmode="tel" placeholder="(555) 123-4567" oninput="formatPhone(this); updatePreview()">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Veteran Mailing Address <span class="tooltip-trigger" data-tooltip="Optional. Auto-filled from a loaded profile. Appears in the statement's identification caption.">?</span></label>
-                        <input type="text" id="mailingAddress" placeholder="e.g., 123 Main St, Anytown, WA 00000" oninput="updatePreview()">
-                        <p class="help-text">Street, city, state, ZIP — as it should appear on the filing.</p>
+                        <label>Email</label>
+                        <input type="text" id="email" placeholder="veteran@example.com" oninput="updatePreview()">
+                    </div>
+                    <div style="display:grid; grid-template-columns: 3fr 1fr; gap:1rem;">
+                        <div class="form-group">
+                            <label>Mailing Address — Street <span class="required">*</span></label>
+                            <input type="text" id="addressStreet" placeholder="123 Main St" oninput="updatePreview()">
+                        </div>
+                        <div class="form-group">
+                            <label>Apt/Unit</label>
+                            <input type="text" id="addressApt" placeholder="Apt 4" oninput="updatePreview()">
+                        </div>
+                    </div>
+                    <div style="display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap:1rem;">
+                        <div class="form-group">
+                            <label>City <span class="required">*</span></label>
+                            <input type="text" id="addressCity" placeholder="Anytown" oninput="updatePreview()">
+                        </div>
+                        <div class="form-group">
+                            <label>State</label>
+                            <input type="text" id="addressState" maxlength="2" placeholder="WA" oninput="updatePreview()">
+                        </div>
+                        <div class="form-group">
+                            <label>ZIP</label>
+                            <input type="text" id="addressZip" inputmode="numeric" placeholder="00000" oninput="updatePreview()">
+                        </div>
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text" id="addressCountry" placeholder="US" oninput="updatePreview()">
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
@@ -705,6 +773,7 @@
                             <option value="Secondary connection (causation)">Secondary connection (causation)</option>
                             <option value="Secondary aggravation">Secondary aggravation</option>
                             <option value="Gulf War presumption">Gulf War presumption</option>
+                            <option value="TERA Toxic Exposure">TERA Toxic Exposure</option>
                             <option value="General nexus opinion">General nexus opinion</option>
                         </select>
                         <p class="help-text" id="theoryDetectionNote"></p>
@@ -788,9 +857,9 @@
                     </button>
                     <div class="form-navigation">
                         <button class="btn btn-nav btn-nav-prev" onclick="prevSection()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back</button>
-                        <button class="btn btn-primary btn-nav" onclick="finalizeDocument()">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                            Generate Final Document
+                        <button class="btn btn-primary btn-nav" onclick="finalizeDocument(); generateFilledPDF();">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+                            Generate Filled 4138 PDF
                         </button>
                     </div>
                 </div>
@@ -806,9 +875,13 @@
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                         Copy
                     </button>
-                    <button class="btn btn-primary" onclick="downloadDocument()" style="padding: 0.5rem 0.875rem; font-size: 0.8125rem;">
+                    <button class="btn btn-secondary" onclick="downloadDocument()" style="padding: 0.5rem 0.875rem; font-size: 0.8125rem;" title="Save the argument text as a .txt file">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                        Download
+                        .txt
+                    </button>
+                    <button class="btn btn-primary" onclick="generateFilledPDF()" style="padding: 0.5rem 0.875rem; font-size: 0.8125rem;" title="Fill the real VA Form 21-4138 PDF — ready to save and sign">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+                        Generate 4138 PDF
                     </button>
                 </div>
             </div>
@@ -843,6 +916,121 @@
         const totalSections = 5;
         let selectedCitations = [];
 
+        // ---- Veteran identity fields (the set that maps to the 21-4138 PDF) ----
+        // These are the only fields stored in a saved client Template.
+        const IDENTITY_FIELDS = [
+            'firstName', 'middleInitial', 'lastName', 'ssn', 'fileNumber', 'serviceNumber',
+            'dob', 'phone', 'email', 'addressStreet', 'addressApt', 'addressCity',
+            'addressState', 'addressZip', 'addressCountry'
+        ];
+
+        function getIdentityData() {
+            const o = {};
+            IDENTITY_FIELDS.forEach(id => { const el = document.getElementById(id); o[id] = el ? el.value : ''; });
+            return o;
+        }
+
+        function setIdentityData(o) {
+            IDENTITY_FIELDS.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && o[id] !== undefined && o[id] !== null) el.value = o[id];
+            });
+        }
+
+        function composeVeteranName() {
+            const f = document.getElementById('firstName').value.trim();
+            const m = document.getElementById('middleInitial').value.trim();
+            const l = document.getElementById('lastName').value.trim();
+            return [f, m ? m + '.' : '', l].filter(Boolean).join(' ').trim();
+        }
+
+        function composeMailingAddress() {
+            const street = document.getElementById('addressStreet').value.trim();
+            const apt = document.getElementById('addressApt').value.trim();
+            const city = document.getElementById('addressCity').value.trim();
+            const state = document.getElementById('addressState').value.trim();
+            const zip = document.getElementById('addressZip').value.trim();
+            const line1 = [street, apt].filter(Boolean).join(', ');
+            const cityState = [city, state].filter(Boolean).join(', ');
+            const line2 = [cityState, zip].filter(Boolean).join(' ').trim();
+            return [line1, line2].filter(Boolean).join(', ').trim();
+        }
+
+        // Input formatters (ported from va-form-filler for consistency).
+        function formatSSN(el) {
+            let v = el.value.replace(/\D/g, '').substring(0, 9);
+            if (v.length >= 6) el.value = v.substring(0, 3) + '-' + v.substring(3, 5) + '-' + v.substring(5);
+            else if (v.length >= 4) el.value = v.substring(0, 3) + '-' + v.substring(3);
+            else el.value = v;
+        }
+        function formatPhone(el) {
+            let v = el.value.replace(/\D/g, '').substring(0, 10);
+            if (v.length >= 7) el.value = '(' + v.substring(0, 3) + ') ' + v.substring(3, 6) + '-' + v.substring(6);
+            else if (v.length >= 4) el.value = '(' + v.substring(0, 3) + ') ' + v.substring(3);
+            else if (v.length > 0) el.value = '(' + v;
+            else el.value = '';
+        }
+
+        // ---- Client templates (identity-only, stored locally) ----
+        const TEMPLATES_KEY = 'va4138Templates';
+
+        function getTemplates() {
+            try { return JSON.parse(localStorage.getItem(TEMPLATES_KEY) || '{}'); }
+            catch (e) { return {}; }
+        }
+        function setTemplates(obj) { localStorage.setItem(TEMPLATES_KEY, JSON.stringify(obj)); }
+
+        function populateTemplateSelect(selectName) {
+            const sel = document.getElementById('templateSelect');
+            const templates = getTemplates();
+            const names = Object.keys(templates).sort((a, b) => a.localeCompare(b));
+            sel.innerHTML = '<option value="">Load saved template…</option>' +
+                names.map(n => `<option value="${n.replace(/"/g, '&quot;')}">${n}</option>`).join('');
+            if (selectName) sel.value = selectName;
+        }
+
+        function setTemplateStatus(msg, color) {
+            const s = document.getElementById('templateStatus');
+            if (!s) return;
+            s.textContent = msg;
+            s.style.color = color || '';
+        }
+
+        function saveTemplatePrompt() {
+            const suggested = (document.getElementById('lastName').value + ', ' + document.getElementById('firstName').value).replace(/^, |, $/g, '').trim();
+            const name = (window.prompt('Save identity fields as a template named:', suggested) || '').trim();
+            if (!name) return;
+            const templates = getTemplates();
+            const exists = Object.prototype.hasOwnProperty.call(templates, name);
+            if (exists && !window.confirm(`A template named "${name}" already exists. Overwrite it?`)) return;
+            templates[name] = getIdentityData();
+            setTemplates(templates);
+            populateTemplateSelect(name);
+            setTemplateStatus(`Saved template "${name}". Identity fields only — stays on this device.`, 'var(--success)');
+        }
+
+        function loadTemplate(name) {
+            if (!name) return;
+            const templates = getTemplates();
+            if (!templates[name]) { setTemplateStatus('That template was not found.', 'var(--warning)'); return; }
+            setIdentityData(templates[name]);
+            updatePreview();
+            saveProgress();
+            setTemplateStatus(`Loaded template "${name}".`, 'var(--success)');
+        }
+
+        function deleteTemplate() {
+            const sel = document.getElementById('templateSelect');
+            const name = sel.value;
+            if (!name) { setTemplateStatus('Pick a template to delete first.', 'var(--warning)'); return; }
+            if (!window.confirm(`Delete the template "${name}"? This cannot be undone.`)) return;
+            const templates = getTemplates();
+            delete templates[name];
+            setTemplates(templates);
+            populateTemplateSelect();
+            setTemplateStatus(`Deleted template "${name}".`, '');
+        }
+
         // ---- Veteran profile import (Client_Data.txt from va-form-filler) ----
         // Parses a flat key=value text file IN-PAGE via FileReader. The file is
         // never uploaded; nothing leaves the machine. Only identity/case fields
@@ -860,22 +1048,50 @@
             return map;
         }
 
-        // Map the profile to the three identity fields, with fallbacks that
-        // assemble Name / Address from their component keys when the populated
-        // single-field value is absent.
+        // Map the profile to the structured identity fields. Component keys
+        // (firstname, street, city, …) take precedence; when only a combined
+        // Name / Address value exists, parse it heuristically so the structured
+        // PDF fields still get populated. The user can correct any field.
         function composeFromProfile(map) {
-            let name = map.name || '';
-            if (!name) {
-                name = [map.firstname, map.middleinitial, map.lastname].filter(Boolean).join(' ').trim();
+            const out = {};
+            // Name
+            out.firstName = map.firstname || '';
+            out.middleInitial = (map.middleinitial || '').replace('.', '').slice(0, 1);
+            out.lastName = map.lastname || '';
+            if (!out.firstName && !out.lastName && map.name) {
+                const parts = map.name.trim().split(/\s+/);
+                if (parts.length === 1) { out.lastName = parts[0]; }
+                else if (parts.length === 2) { out.firstName = parts[0]; out.lastName = parts[1]; }
+                else { out.firstName = parts[0]; out.lastName = parts[parts.length - 1]; out.middleInitial = parts[1].replace('.', '').slice(0, 1); }
             }
-            let address = map.address || '';
-            if (!address) {
-                const line1 = [map.street, map.apt].filter(Boolean).join(', ');
-                const cityState = [map.city, map.state].filter(Boolean).join(', ');
-                const line2 = [cityState, map.zip].filter(Boolean).join(' ').trim();
-                address = [line1, line2, map.country].filter(Boolean).join(', ').trim();
+            // Identifiers / contact
+            out.fileNumber = map.filenumber || '';
+            out.ssn = map.ssn || '';
+            out.serviceNumber = map.servicenumber || '';
+            out.phone = map.phone || map.telephone || '';
+            out.email = map.email || '';
+            out.dob = map.dob || map.dateofbirth || '';
+            // Address
+            out.addressStreet = map.street || '';
+            out.addressApt = map.apt || map.apartment || '';
+            out.addressCity = map.city || '';
+            out.addressState = map.state || '';
+            out.addressZip = map.zip || map.zipcode || '';
+            out.addressCountry = map.country || '';
+            if (!out.addressStreet && !out.addressCity && map.address) {
+                // "123 Main St, Anytown, WA 00000"
+                const seg = map.address.split(',').map(s => s.trim()).filter(Boolean);
+                if (seg.length) out.addressStreet = seg[0];
+                if (seg.length >= 3) {
+                    out.addressCity = seg[1];
+                    const sz = seg[2].split(/\s+/);
+                    out.addressState = sz[0] || '';
+                    out.addressZip = sz[1] || '';
+                } else if (seg.length === 2) {
+                    out.addressCity = seg[1];
+                }
             }
-            return { name, fileNumber: map.filenumber || '', address };
+            return out;
         }
 
         // Apply mapped values. Profile values fill the identity fields; fields the
@@ -884,10 +1100,19 @@
         // meaning). Returns the human-readable list of fields that were filled.
         function applyProfileData(map) {
             const p = composeFromProfile(map);
+            const labels = {
+                firstName: 'First Name', lastName: 'Last Name', middleInitial: 'M.I.', ssn: 'SSN',
+                fileNumber: 'File Number', serviceNumber: 'Service Number', dob: 'Date of Birth',
+                phone: 'Phone', email: 'Email', addressStreet: 'Street', addressApt: 'Apt',
+                addressCity: 'City', addressState: 'State', addressZip: 'ZIP', addressCountry: 'Country'
+            };
             const filled = [];
-            if (p.name) { document.getElementById('veteranName').value = p.name; filled.push('Veteran Name'); }
-            if (p.fileNumber) { document.getElementById('fileNumber').value = p.fileNumber; filled.push('File Number'); }
-            if (p.address) { document.getElementById('mailingAddress').value = p.address; filled.push('Mailing Address'); }
+            Object.keys(labels).forEach(id => {
+                if (p[id]) {
+                    const el = document.getElementById(id);
+                    if (el) { el.value = p[id]; if (['firstName', 'lastName', 'fileNumber', 'addressStreet', 'addressCity'].includes(id)) filled.push(labels[id]); }
+                }
+            });
             updatePreview();
             saveProgress();
             return filled;
@@ -1035,6 +1260,7 @@
             else if (questionText.includes('aggravated') && questionText.includes('service-connected')) { detected = 'Secondary aggravation'; note = 'Detected: Secondary aggravation question'; }
             else if (questionText.includes('caused by') && questionText.includes('service-connected')) { detected = 'Secondary connection (causation)'; note = 'Detected: Secondary causation question'; }
             else if (questionText.includes('aggravat') && questionText.includes('during service')) { detected = 'Aggravation during service'; note = 'Detected: In-service aggravation question'; }
+            else if (questionText.includes('tera') || questionText.includes('toxic exposure') || questionText.includes('burn pit') || questionText.includes('particulate matter')) { detected = 'TERA Toxic Exposure'; note = 'Detected: TERA / toxic exposure question'; }
             else if (questionText.includes('gulf war') || questionText.includes('undiagnosed illness')) { detected = 'Gulf War presumption'; note = 'Detected: Gulf War presumption question'; }
             else if (questionText.includes('nexus') || questionText.includes('related to service')) { detected = 'General nexus opinion'; note = 'Detected: General nexus question'; }
             if (detected) { theorySelect.value = detected; noteElement.textContent = note; noteElement.style.color = 'var(--success)'; }
@@ -1083,9 +1309,9 @@
                 if (date || provider || summary) medicalRecords.push({ date, provider, summary });
             });
             return {
-                veteranName: document.getElementById('veteranName').value || '[VETERAN NAME]',
-                fileNumber: document.getElementById('fileNumber').value || '[FILE NUMBER]',
-                mailingAddress: document.getElementById('mailingAddress').value || '[MAILING ADDRESS]',
+                veteranName: composeVeteranName() || '[VETERAN NAME]',
+                fileNumber: (document.getElementById('fileNumber').value || document.getElementById('ssn').value) || '[FILE NUMBER]',
+                mailingAddress: composeMailingAddress() || '[MAILING ADDRESS]',
                 repName: document.getElementById('repName').value || '[REPRESENTATIVE NAME]',
                 repCapacity: document.getElementById('repCapacity').value || '[CAPACITY]',
                 formType: document.getElementById('formType').value || '[FORM TYPE]',
@@ -1219,22 +1445,84 @@ Date: ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', 
             const a = document.createElement('a'); a.href = url; a.download = fn; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
         }
 
+        // The text that goes into the form's REMARKS section: the argument body
+        // only (the form already carries the veteran's identity caption and the
+        // signature/date block, so those are omitted here to avoid duplication).
+        function generateRemarksText() {
+            const full = generatePlainText();
+            let body = full;
+            const start = full.indexOf('I am submitting this statement');
+            if (start !== -1) body = full.slice(start);
+            const footer = body.indexOf('\n---\nSubmitted by:');
+            if (footer !== -1) body = body.slice(0, footer);
+            body = body.trim();
+            const repName = document.getElementById('repName').value.trim();
+            const repCapacity = document.getElementById('repCapacity').value.trim();
+            if (repName) body += `\n\nRespectfully submitted,\n${[repName, repCapacity].filter(Boolean).join(', ')}`;
+            return body;
+        }
+
+        function toast(text) {
+            const n = document.getElementById('copyNotification');
+            const span = n.querySelector('span');
+            const original = 'Document copied to clipboard!';
+            span.textContent = text;
+            n.classList.add('show');
+            setTimeout(() => { n.classList.remove('show'); span.textContent = original; }, 3500);
+        }
+
+        // Send identity + generated remarks to the local fill server, which stamps
+        // them into the real vba-21-4138-are.pdf and returns a sign-ready PDF.
+        async function generateFilledPDF() {
+            const id = getIdentityData();
+            const payload = {
+                first_name: id.firstName, middle_initial: id.middleInitial, last_name: id.lastName,
+                ssn: id.ssn, va_file_number: id.fileNumber, service_number: id.serviceNumber,
+                dob: id.dob, phone: id.phone, email: id.email,
+                address_street: id.addressStreet, address_apt: id.addressApt, address_city: id.addressCity,
+                address_state: id.addressState, address_zip: id.addressZip, address_country: id.addressCountry || 'US',
+                remarks: generateRemarksText()
+            };
+            const base = (location.protocol === 'file:') ? 'http://127.0.0.1:4138' : '';
+            toast('Generating filled 4138 PDF…');
+            try {
+                const res = await fetch(base + '/api/fill', {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+                });
+                if (!res.ok) {
+                    let msg = 'PDF generation failed (' + res.status + ').';
+                    try { const j = await res.json(); if (j.error) msg = j.error; } catch (e) {}
+                    throw new Error(msg);
+                }
+                let filename = 'VA-21-4138.pdf';
+                const disp = res.headers.get('Content-Disposition');
+                if (disp) { const m = disp.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/); if (m) filename = m[1].replace(/['"]/g, ''); }
+                const blob = await res.blob();
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a'); a.href = url; a.download = filename; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+                toast('Filled 4138 PDF downloaded — ready to sign.');
+            } catch (err) {
+                const isNetwork = err && /failed to fetch|networkerror|load failed/i.test(err.message || '');
+                alert(isNetwork
+                    ? 'Could not reach the local PDF server.\n\nStart it by double-clicking "Start-4138-Theory-Corrector.bat", then open the tool at http://127.0.0.1:4138/ and try again.'
+                    : ('Could not generate the PDF:\n\n' + (err.message || err)));
+            }
+        }
+
         function finalizeDocument() {
             updatePreview();
             if (window.innerWidth <= 1024) document.querySelector('.preview-panel').scrollIntoView({ behavior: 'smooth' });
             const alert = document.createElement('div'); alert.className = 'alert alert-success';
-            alert.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>Document ready!</strong> Use the Copy or Download buttons in the preview panel to export your VA Form 21-4138.</span>`;
+            alert.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>Document ready!</strong> Your filled VA Form 21-4138 PDF is downloading — save it to the client's file and sign. (Use <strong>Copy</strong> or <strong>.txt</strong> in the preview for the text only.)</span>`;
             const section = document.getElementById('section-5');
             const existing = section.querySelector('.alert-success'); if (existing) existing.remove();
             section.insertBefore(alert, section.querySelector('.section-header').nextSibling);
         }
 
         function saveProgress(showNotification = false) {
-            const data = { 
-                currentSection: currentSection, 
-                veteranName: document.getElementById('veteranName').value, 
-                fileNumber: document.getElementById('fileNumber').value,
-                mailingAddress: document.getElementById('mailingAddress').value,
+            const data = {
+                currentSection: currentSection,
+                ...getIdentityData(),
                 repName: document.getElementById('repName').value,
                 repCapacity: document.getElementById('repCapacity').value, 
                 formType: document.getElementById('formType').value, 
@@ -1293,9 +1581,15 @@ Date: ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', 
                 const data = JSON.parse(saved);
                 console.log('Loading saved draft:', data);
                 
-                if (data.veteranName) document.getElementById('veteranName').value = data.veteranName;
-                if (data.fileNumber) document.getElementById('fileNumber').value = data.fileNumber;
-                if (data.mailingAddress) document.getElementById('mailingAddress').value = data.mailingAddress;
+                // Back-compat: older drafts stored combined veteranName/mailingAddress.
+                if (data.firstName === undefined && (data.veteranName || data.mailingAddress)) {
+                    const legacy = composeFromProfile({
+                        name: data.veteranName || '', address: data.mailingAddress || '', filenumber: data.fileNumber || ''
+                    });
+                    setIdentityData(legacy);
+                } else {
+                    setIdentityData(data);
+                }
                 if (data.repName) document.getElementById('repName').value = data.repName;
                 if (data.repCapacity) document.getElementById('repCapacity').value = data.repCapacity;
                 if (data.formType) document.getElementById('formType').value = data.formType;
@@ -1369,7 +1663,7 @@ Date: ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', 
             if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); if (currentSection < totalSections) nextSection(); else finalizeDocument(); }
         });
 
-        document.addEventListener('DOMContentLoaded', function() { loadProgress(); updatePreview(); });
+        document.addEventListener('DOMContentLoaded', function() { populateTemplateSelect(); loadProgress(); updatePreview(); });
         window.addEventListener('beforeunload', function() { const data = gatherFormData(); if (data.veteranName !== '[VETERAN NAME]' || data.conditionLabel !== '[CONDITION]') saveProgress(); });
     </script>
 </body>

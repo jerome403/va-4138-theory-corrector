@@ -8,6 +8,10 @@
 # impeccable local config / cache, if present
 .impeccable/
 
+# Python bytecode / caches (server.py is the source; these are generated)
+__pycache__/
+*.pyc
+
 # OS / editor cruft
 Thumbs.db
 Desktop.ini

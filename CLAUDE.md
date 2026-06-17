@@ -1,9 +1,11 @@
 # CLAUDE.md — VA Form 21-4138 Theory Corrector
 
-A single-file, no-build browser tool that drafts **VA Form 21-4138 (Statement in
-Support of Claim)**. It corrects the recurring mismatch between the theory of
-entitlement a veteran raised and the narrower theory implied by the AOJ's C&P exam
-question, and requests corrected medical-opinion questions. Part of the Spearman
+A browser tool that drafts **VA Form 21-4138 (Statement in Support of Claim)** and
+**fills the real government PDF**. It corrects the recurring mismatch between the
+theory of entitlement a veteran raised and the narrower theory implied by the AOJ's
+C&P exam question, and requests corrected medical-opinion questions. The UI is a
+single HTML file; a thin **local Flask server (`server.py`)** does the one thing the
+browser can't do reliably — stamp the output into the XFA PDF. Part of the Spearman
 Appeals client-lifecycle filing system; companion to `va-form-filler` and
 `cfile-sorter`.
 
@@ -29,12 +31,22 @@ This tool handles **real veteran PII**. The rules are non-negotiable:
 
 ## Core model (read before touching the form logic)
 
-- **The entire app is `4138-theory-corrector.html`** — HTML + CSS + JS in one file,
+- **The UI is `4138-theory-corrector.html`** — HTML + CSS + JS in one file,
   vanilla JS, `document.getElementById`, inline `oninput="updatePreview()"` handlers.
-- **State** persists to `localStorage` under the key **`va4138Draft`** (JSON). The
-  live key is `va4138Draft` — *not* any older `va_4138_*` name.
+- **The PDF fill is `server.py`** (Flask) + **`field_mappings_4138.py`** (the 21-4138
+  AcroField map, vendored from `va-form-filler`) + **`forms/vba-21-4138-are.pdf`** (the
+  blank form). `POST /api/fill` takes identity + remarks JSON and returns the filled PDF,
+  using the proven XFA technique (set AcroForm values, strip `/XFA`, set `NeedAppearances`).
+  The server also serves the HTML so the page calls `/api/fill` same-origin.
+- **State** persists to `localStorage`: the working draft under **`va4138Draft`** (JSON),
+  and reusable **identity-only client templates** under **`va4138Templates`**
+  (`{ "<name>": {identity fields} }`). The live keys are these — *not* any older `va_4138_*` name.
 - **Flow:** 5-step form (`section-1`..`section-5`) → live preview (`previewDocument`)
-  → copy / download as plain text.
+  → **Generate 4138 PDF** (`generateFilledPDF` → `/api/fill` → download). Copy / `.txt`
+  still export the argument as plain text. The argument body goes into the form's
+  `REMARKS[0]`/`REMARKS[1]` boxes via `generateRemarksText`; identity fills the PDF's own fields.
+- **Launch with `Start-4138-Theory-Corrector.bat`** (starts the server, opens the browser
+  at `http://127.0.0.1:4138/`). `test_e2e.py` is a headless-browser smoke test (synthetic veteran).
 - **`gatherFormData` is the single source of form state.** `generateDocumentHTML`
   (preview) and `generatePlainText` (export) both render from it.
 - **Theory → corrected questions is a `switch` in `generateQuestions(theoryType)`** —
@@ -76,10 +88,12 @@ case-insensitively; `#` and blank lines are ignored.
 
 ## Conventions / invariants
 
-- **Preserve single-file, no-build.** No bundler, framework, npm runtime deps, or
-  server. Must run by double-clicking the HTML from `file://`. Choose `file://`-safe
-  techniques (`<input type="file">` + `FileReader`, **not** the File System Access
-  API).
+- **Keep the UI a single no-build HTML file.** No bundler, framework, or npm runtime
+  deps for the front end. The only backend is `server.py` (Flask + PyMuPDF, two pip
+  deps in `requirements.txt`) — keep it tiny and local-only (binds `127.0.0.1`). Don't
+  add a build step or JS framework. The HTML still degrades gracefully opened from
+  `file://` (drafting works; PDF generation needs the server), so keep `file://`-safe
+  techniques (`<input type="file">` + `FileReader`, **not** the File System Access API).
 - **Legal accuracy is correctness.** Citations, theory mappings, and opinion-question
   wording are domain-critical. Don't "improve" legal text unasked; respect mappings
   that carry legal meaning (e.g. `EffectiveDate` ≠ rating date).
@@ -147,11 +161,19 @@ blocks and stays silent when clean.
 
 ## Validation
 
-No automated harness. Before shipping, load the HTML in a browser with the **synthetic**
-`Test Veteran` profile and confirm: Load Profile fills only the identity fields; the
-caption block + plain-text export render; manual fields stay untouched; `EffectiveDate`
-does NOT populate the rating date; an old `va4138Draft` still loads; print output looks
-right. Never validate with a real client file.
+**Automated:** `python test_e2e.py` drives the real tool headless against a **synthetic**
+veteran — identity entry + auto-format, template save/load, TERA auto-detection, question
+generation, the filled-PDF download, and an AcroField check on the result. Run it after
+touching the form logic, the server, or the mapping. (Needs `playwright` +
+`python -m playwright install chromium` once.)
+
+**Manual spot-checks** against the synthetic `Test Veteran` (never a real client file):
+Load Profile / a saved template fills only identity fields; manual fields stay untouched;
+`EffectiveDate` does NOT populate the rating date; an old `va4138Draft` still loads; the
+generated PDF shows identity in Section I and the argument in the Remarks boxes.
+
+**Desktop copies are HTML-only** — they can draft and export text, but PDF generation
+needs the server, so run the real filing flow from the repo via the `.bat`.
 
 ## Repo
 
