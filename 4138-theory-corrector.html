@@ -1346,6 +1346,9 @@
             if (data.questionC) questionsHTML += `<p class="indent">c. ${data.questionC}</p>`;
             if (!questionsHTML) questionsHTML = '<p class="indent">a. <span class="placeholder">[Medical opinion question]</span></p>';
             const citationsText = data.citations.length > 0 ? data.citations.map(c => fc(c)).join(', ') : fc('38 C.F.R. §§ 3.103, 3.159');
+            const isTeraRequest = /tera|toxic exposure/i.test(data.requestedTheory || '');
+            const hasIntendedTheory = data.intendedTheory && !data.intendedTheory.startsWith('[');
+            const teraDenialHTML = (isTeraRequest && hasIntendedTheory) ? `<p>Here, the AOJ has developed the claim through a toxic exposure risk activity (TERA) medical examination under ${fc('38 U.S.C. § 1168')}. A § 1168 examination addresses only whether the claimed condition is linked to a toxic exposure risk activity; it does not address — and cannot substitute for — an adequate medical opinion on the theory of entitlement the veteran actually raised: <strong>${fp(data.intendedTheory)}</strong>. A negative or inconclusive TERA opinion therefore does not discharge VA's duty to assist as to that theory, and the claim may not be denied on the basis of an examination that never addressed the correct legal question. To the extent a § 1168 opinion is obtained, it must also consider the veteran's total potential exposure across all applicable deployments and the synergistic, combined effect of all toxic exposure risk activities; an opinion that evaluates exposures in isolation is itself inadequate.</p>` : '';
             return `<p style="margin-bottom: 1.25rem;"><strong>Veteran:</strong> ${fp(data.veteranName)}<br><strong>VA File Number:</strong> ${fp(data.fileNumber)}<br><strong>Mailing Address:</strong> ${fp(data.mailingAddress)}</p>
                 <p>I am submitting this statement as the ${fp(data.repCapacity)} pursuant to VA Form 21-22a on file, in support of the veteran's VA Form ${fp(data.formType)} for ${fp(data.conditionLabel)}.</p>
                 <h4>1. Clarification of Claimed Theory of Entitlement</h4>
@@ -1355,6 +1358,7 @@
                 <p>The AOJ's Compensation & Pension (C&P) medical opinion request for this condition asks:</p>
                 <p class="indent"><em>"${fp(data.examQuestionText)}"</em></p>
                 <p>This question is framed under <strong>${fp(data.requestedTheory)}</strong>, and does not direct the examiner to address the actual theory at issue: <strong>${fp(data.intendedTheory)}</strong>.</p>
+                ${teraDenialHTML}
                 <p>Because the exam request is misaligned with the theory reasonably raised by the veteran's filings and the evidence, any opinion that only answers the above question will not be adequate to decide the claim on the correct legal basis. VA's duty to assist includes obtaining a medical opinion that addresses the proper theory of entitlement. See ${fc('38 C.F.R. § 3.159(c)(4)')}; ${fc('38 C.F.R. § 3.103(a)')}.</p>
                 <h4>3. Key Evidence Supporting the Intended Theory</h4>
                 <p>Relevant evidence already of record includes:</p><ul>${evidenceHTML}</ul>
@@ -1379,6 +1383,9 @@
             if (data.questionC) questionsText += `   c. ${data.questionC}\n`;
             if (!questionsText) questionsText = '   a. [Medical opinion question]\n';
             const citationsText = data.citations.length > 0 ? data.citations.join(', ') : '38 C.F.R. §§ 3.103, 3.159';
+            const isTeraReq = /tera|toxic exposure/i.test(data.requestedTheory || '');
+            const hasIntended = data.intendedTheory && !data.intendedTheory.startsWith('[');
+            const teraDenialText = (isTeraReq && hasIntended) ? `\nHere, the AOJ has developed the claim through a toxic exposure risk activity (TERA) medical examination under 38 U.S.C. § 1168. A § 1168 examination addresses only whether the claimed condition is linked to a toxic exposure risk activity; it does not address — and cannot substitute for — an adequate medical opinion on the theory of entitlement the veteran actually raised: ${data.intendedTheory}. A negative or inconclusive TERA opinion therefore does not discharge VA's duty to assist as to that theory, and the claim may not be denied on the basis of an examination that never addressed the correct legal question. To the extent a § 1168 opinion is obtained, it must also consider the veteran's total potential exposure across all applicable deployments and the synergistic, combined effect of all toxic exposure risk activities; an opinion that evaluates exposures in isolation is itself inadequate.\n` : '';
             return `VA FORM 21-4138 - STATEMENT IN SUPPORT OF CLAIM
 
 Veteran: ${data.veteranName}
@@ -1400,7 +1407,7 @@ The AOJ's Compensation & Pension (C&P) medical opinion request for this conditio
 "${data.examQuestionText}"
 
 This question is framed under ${data.requestedTheory}, and does not direct the examiner to address the actual theory at issue: ${data.intendedTheory}.
-
+${teraDenialText}
 Because the exam request is misaligned with the theory reasonably raised by the veteran's filings and the evidence, any opinion that only answers the above question will not be adequate to decide the claim on the correct legal basis. VA's duty to assist includes obtaining a medical opinion that addresses the proper theory of entitlement. See 38 C.F.R. § 3.159(c)(4); 38 C.F.R. § 3.103(a).
 
 3. KEY EVIDENCE SUPPORTING THE INTENDED THEORY

@@ -143,12 +143,18 @@ def run():
         if got != exp:
             ok = False
             print(f"[FAIL] {k}: got {got!r} exp {exp!r}")
-    rem = vals.get("REMARKS[0]", "")
-    if not rem:
+    rem = vals.get("REMARKS[0]", "") + " " + vals.get("REMARKS[1]", "")
+    if not rem.strip():
         ok = False
-        print("[FAIL] REMARKS[0] is empty")
+        print("[FAIL] REMARKS is empty")
+    # TERA deny-vehicle argument: requested theory was TERA, intended was Secondary,
+    # so the statement must invoke the § 1168 "can't substitute" framing.
+    for needle in ("1168", "cannot substitute", "toxic exposure risk activity"):
+        if needle not in rem:
+            ok = False
+            print(f"[FAIL] TERA deny-vehicle text missing: {needle!r}")
     assert ok, "PDF verification failed"
-    print(f"ALL CHECKS PASSED. Remarks len={len(rem)}. PDF: {OUT}")
+    print(f"ALL CHECKS PASSED (incl. TERA deny-vehicle argument). Remarks len={len(rem)}. PDF: {OUT}")
 
 
 if __name__ == "__main__":
