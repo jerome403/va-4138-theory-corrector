@@ -716,10 +716,12 @@
                     <div class="form-group">
                         <label>Relevant Citations <span class="tooltip-trigger" data-tooltip="Select all applicable statutory and regulatory citations.">?</span></label>
                         <div class="citation-tags" id="citationTags">
+                            <span class="citation-tag" data-citation="38 C.F.R. § 3.303" onclick="toggleCitation(this)">§ 3.303</span>
                             <span class="citation-tag" data-citation="38 C.F.R. § 3.310" onclick="toggleCitation(this)">§ 3.310</span>
                             <span class="citation-tag" data-citation="38 C.F.R. § 3.306" onclick="toggleCitation(this)">§ 3.306</span>
                             <span class="citation-tag" data-citation="38 C.F.R. § 3.317" onclick="toggleCitation(this)">§ 3.317</span>
                             <span class="citation-tag" data-citation="38 C.F.R. § 3.320" onclick="toggleCitation(this)">§ 3.320</span>
+                            <span class="citation-tag" data-citation="38 U.S.C. §§ 1110, 1131" onclick="toggleCitation(this)">§§ 1110/1131</span>
                             <span class="citation-tag" data-citation="38 U.S.C. § 1153" onclick="toggleCitation(this)">§ 1153</span>
                             <span class="citation-tag" data-citation="38 U.S.C. § 1117" onclick="toggleCitation(this)">§ 1117</span>
                             <span class="citation-tag" data-citation="38 U.S.C. § 1119" onclick="toggleCitation(this)">§ 1119</span>
@@ -1183,6 +1185,7 @@
             document.querySelectorAll('.citation-tag').forEach(tag => tag.classList.remove('selected'));
             selectedCitations = [];
             const citationMap = {
+                'Direct Service Connection': ['38 C.F.R. § 3.303', '38 U.S.C. §§ 1110, 1131'],
                 'Secondary Connection - Caused By (38 C.F.R. § 3.310(a))': ['38 C.F.R. § 3.310'],
                 'Secondary Connection - Aggravated By (38 C.F.R. § 3.310(b))': ['38 C.F.R. § 3.310'],
                 'Presumption of Aggravation (38 U.S.C. § 1153)': ['38 U.S.C. § 1153', '38 C.F.R. § 3.306'],
