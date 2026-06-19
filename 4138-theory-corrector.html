@@ -918,6 +918,20 @@
         const totalSections = 5;
         let selectedCitations = [];
 
+        // ---- Practitioner defaults ----
+        // Pre-fills the Representative fields for this operation. The fields stay
+        // on the form and remain fully editable; defaults only fill them when empty
+        // (a saved draft or manual edit always wins). To share this tool with other
+        // representatives, blank these two values (set to '') — nothing else changes.
+        const REP_DEFAULTS = { name: 'Jerome Spearman', capacity: 'accredited agent' };
+
+        function applyRepDefaults() {
+            const n = document.getElementById('repName');
+            const c = document.getElementById('repCapacity');
+            if (n && !n.value && REP_DEFAULTS.name) n.value = REP_DEFAULTS.name;
+            if (c && !c.value && REP_DEFAULTS.capacity) c.value = REP_DEFAULTS.capacity;
+        }
+
         // ---- Veteran identity fields (the set that maps to the 21-4138 PDF) ----
         // These are the only fields stored in a saved client Template.
         const IDENTITY_FIELDS = [
@@ -1661,6 +1675,7 @@ Date: ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', 
             document.getElementById('medicalRecordsContainer').innerHTML = `<div class="evidence-entry"><button class="remove-entry" onclick="removeEvidenceEntry(this)" style="display: none;">×</button><div class="form-row"><div class="form-group" style="margin-bottom: 0.5rem;"><label style="font-size: 0.75rem;">Date</label><input type="date" class="record-date" oninput="updatePreview()"></div><div class="form-group" style="margin-bottom: 0.5rem;"><label style="font-size: 0.75rem;">Provider/Source</label><input type="text" class="record-provider" placeholder="e.g., VA Medical Center" oninput="updatePreview()"></div></div><div class="form-group" style="margin-bottom: 0;"><label style="font-size: 0.75rem;">Summary</label><textarea class="record-summary" placeholder="Brief description of relevant finding" style="min-height: 60px;" oninput="updatePreview()"></textarea></div></div>`;
             document.getElementById('otherTheoryGroup').style.display = 'none';
             document.getElementById('secondaryConditionGroup').style.display = 'none';
+            applyRepDefaults();
             const profileStatus = document.getElementById('profileLoadStatus');
             if (profileStatus) { profileStatus.textContent = "Select a client's Client_Data.txt to auto-fill identity fields."; profileStatus.style.color = ''; }
             showSection(1);
@@ -1673,7 +1688,7 @@ Date: ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', 
             if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); if (currentSection < totalSections) nextSection(); else finalizeDocument(); }
         });
 
-        document.addEventListener('DOMContentLoaded', function() { populateTemplateSelect(); loadProgress(); updatePreview(); });
+        document.addEventListener('DOMContentLoaded', function() { populateTemplateSelect(); loadProgress(); applyRepDefaults(); updatePreview(); });
         window.addEventListener('beforeunload', function() { const data = gatherFormData(); if (data.veteranName !== '[VETERAN NAME]' || data.conditionLabel !== '[CONDITION]') saveProgress(); });
     </script>
 </body>
