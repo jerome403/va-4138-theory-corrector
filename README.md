@@ -59,16 +59,20 @@ generates theory-specific corrected opinion questions:
 | Presumption of Aggravation | § 1153, § 3.306 |
 | Gulf War MUCMI | § 3.317, § 1117 |
 | PACT Act Presumption | PACT Act, § 3.320 |
+| TERA Toxic Exposure | § 1168 |
 
-**TERA is handled on the *requested* (VSR) side, not as an intended theory** — because
+**TERA appears on both sides.** As an *intended* theory it generates § 1168
+toxic-exposure-nexus opinion questions (total exposure across all service; combined/
+synergistic effect). But its more important role is on the **requested (VSR) side**:
 VA frequently orders a Toxic Exposure Risk Activity exam as a path to *denial* instead of
 examining the theory the veteran actually raised. When the requested theory is **TERA
-Toxic Exposure**, the statement adds a targeted argument that a **38 U.S.C. § 1168** TERA
-examination addresses only toxic-exposure nexus and **cannot substitute** for an adequate
-opinion on the veteran's actual theory — so a negative/inconclusive TERA opinion does not
-discharge the duty to assist and the claim may not be denied on that basis. (§ 1168 is the
-non-presumptive nexus route, defined via § 1710(e)(4); distinct from the presumptive
-§ 3.320 particulate-matter route.)
+Toxic Exposure** and the intended theory is something else, the statement adds a targeted
+argument that a **38 U.S.C. § 1168** TERA examination addresses only toxic-exposure nexus
+and **cannot substitute** for an adequate opinion on the veteran's actual theory — so a
+negative/inconclusive TERA opinion does not discharge the duty to assist and the claim may
+not be denied on that basis. (That deny-vehicle paragraph is suppressed when *both* sides
+are TERA, since there is no mismatch. § 1168 is the non-presumptive nexus route, defined
+via § 1710(e)(4); distinct from the presumptive § 3.320 particulate-matter route.)
 
 ## Relationship to the VA Paralegal System
 

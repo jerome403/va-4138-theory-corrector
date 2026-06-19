@@ -698,6 +698,7 @@
                             <option value="">Select theory...</option>
                             <option value="Direct Service Connection">Direct Service Connection</option>
                             <option value="PACT Act Presumption">PACT Act Presumption</option>
+                            <option value="TERA Toxic Exposure">TERA Toxic Exposure (38 U.S.C. § 1168)</option>
                             <option value="Gulf War MUCMI (38 C.F.R. § 3.317)">Gulf War MUCMI (38 C.F.R. § 3.317)</option>
                             <option value="Presumption of Aggravation (38 U.S.C. § 1153)">Presumption of Aggravation (38 U.S.C. § 1153)</option>
                             <option value="Secondary Connection - Caused By (38 C.F.R. § 3.310(a))">Secondary Connection - Caused By</option>
@@ -724,6 +725,7 @@
                             <span class="citation-tag" data-citation="38 U.S.C. §§ 1110, 1131" onclick="toggleCitation(this)">§§ 1110/1131</span>
                             <span class="citation-tag" data-citation="38 U.S.C. § 1153" onclick="toggleCitation(this)">§ 1153</span>
                             <span class="citation-tag" data-citation="38 U.S.C. § 1117" onclick="toggleCitation(this)">§ 1117</span>
+                            <span class="citation-tag" data-citation="38 U.S.C. § 1168" onclick="toggleCitation(this)">§ 1168</span>
                             <span class="citation-tag" data-citation="38 U.S.C. § 1119" onclick="toggleCitation(this)">§ 1119</span>
                             <span class="citation-tag" data-citation="PACT Act" onclick="toggleCitation(this)">PACT Act</span>
                         </div>
@@ -1204,7 +1206,8 @@
                 'Secondary Connection - Aggravated By (38 C.F.R. § 3.310(b))': ['38 C.F.R. § 3.310'],
                 'Presumption of Aggravation (38 U.S.C. § 1153)': ['38 U.S.C. § 1153', '38 C.F.R. § 3.306'],
                 'Gulf War MUCMI (38 C.F.R. § 3.317)': ['38 C.F.R. § 3.317', '38 U.S.C. § 1117'],
-                'PACT Act Presumption': ['PACT Act', '38 C.F.R. § 3.320']
+                'PACT Act Presumption': ['PACT Act', '38 C.F.R. § 3.320'],
+                'TERA Toxic Exposure': ['38 U.S.C. § 1168']
             };
             (citationMap[theory] || []).forEach(citation => {
                 const tag = document.querySelector(`.citation-tag[data-citation="${citation}"]`);
@@ -1249,6 +1252,11 @@
                 case 'PACT Act Presumption':
                     questions.a = `Is the veteran's ${condition} a condition listed under the PACT Act presumptive conditions for toxic exposure?`;
                     questions.b = `Is it at least as likely as not that the veteran's ${condition} is related to toxic exposure during service, including but not limited to burn pit exposure?`;
+                    break;
+                case 'TERA Toxic Exposure':
+                    questions.a = `Is it at least as likely as not (50% probability or greater) that the veteran's ${condition} is related to a toxic exposure risk activity (TERA) during active service, including but not limited to particulate matter, burn pit, or other environmental hazard exposure?`;
+                    questions.b = `In rendering this opinion, please consider the veteran's total potential exposure across all qualifying service and the combined, synergistic effect of all toxic exposure risk activities, rather than evaluating any single exposure in isolation.`;
+                    questions.c = `Please provide a complete rationale that addresses the veteran's service history, the identified exposure(s), and the relevant medical literature regarding ${condition} and toxic exposure.`;
                     break;
                 case 'Direct Service Connection':
                     questions.a = `Is it at least as likely as not (50% probability or greater) that the veteran's ${condition} had its onset during active service or is otherwise causally or etiologically related to an in-service injury, event, or illness?`;
@@ -1365,7 +1373,8 @@
             const citationsText = data.citations.length > 0 ? data.citations.map(c => fc(c)).join(', ') : fc('38 C.F.R. §§ 3.103, 3.159');
             const isTeraRequest = /tera|toxic exposure/i.test(data.requestedTheory || '');
             const hasIntendedTheory = data.intendedTheory && !data.intendedTheory.startsWith('[');
-            const teraDenialHTML = (isTeraRequest && hasIntendedTheory) ? `<p>Here, the AOJ has developed the claim through a toxic exposure risk activity (TERA) medical examination under ${fc('38 U.S.C. § 1168')}. A § 1168 examination addresses only whether the claimed condition is linked to a toxic exposure risk activity; it does not address — and cannot substitute for — an adequate medical opinion on the theory of entitlement the veteran actually raised: <strong>${fp(data.intendedTheory)}</strong>. A negative or inconclusive TERA opinion therefore does not discharge VA's duty to assist as to that theory, and the claim may not be denied on the basis of an examination that never addressed the correct legal question. To the extent a § 1168 opinion is obtained, it must also consider the veteran's total potential exposure across all applicable deployments and the synergistic, combined effect of all toxic exposure risk activities; an opinion that evaluates exposures in isolation is itself inadequate.</p>` : '';
+            const intendedIsTera = /tera|toxic exposure/i.test(data.intendedTheory || '');
+            const teraDenialHTML = (isTeraRequest && hasIntendedTheory && !intendedIsTera) ? `<p>Here, the AOJ has developed the claim through a toxic exposure risk activity (TERA) medical examination under ${fc('38 U.S.C. § 1168')}. A § 1168 examination addresses only whether the claimed condition is linked to a toxic exposure risk activity; it does not address — and cannot substitute for — an adequate medical opinion on the theory of entitlement the veteran actually raised: <strong>${fp(data.intendedTheory)}</strong>. A negative or inconclusive TERA opinion therefore does not discharge VA's duty to assist as to that theory, and the claim may not be denied on the basis of an examination that never addressed the correct legal question. To the extent a § 1168 opinion is obtained, it must also consider the veteran's total potential exposure across all applicable deployments and the synergistic, combined effect of all toxic exposure risk activities; an opinion that evaluates exposures in isolation is itself inadequate.</p>` : '';
             return `<p style="margin-bottom: 1.25rem;"><strong>Veteran:</strong> ${fp(data.veteranName)}<br><strong>VA File Number:</strong> ${fp(data.fileNumber)}<br><strong>Mailing Address:</strong> ${fp(data.mailingAddress)}</p>
                 <p>I am submitting this statement as the ${fp(data.repCapacity)} pursuant to VA Form 21-22a on file, in support of the veteran's VA Form ${fp(data.formType)} for ${fp(data.conditionLabel)}.</p>
                 <h4>1. Clarification of Claimed Theory of Entitlement</h4>
@@ -1402,7 +1411,8 @@
             const citationsText = data.citations.length > 0 ? data.citations.join(', ') : '38 C.F.R. §§ 3.103, 3.159';
             const isTeraReq = /tera|toxic exposure/i.test(data.requestedTheory || '');
             const hasIntended = data.intendedTheory && !data.intendedTheory.startsWith('[');
-            const teraDenialText = (isTeraReq && hasIntended) ? `\nHere, the AOJ has developed the claim through a toxic exposure risk activity (TERA) medical examination under 38 U.S.C. § 1168. A § 1168 examination addresses only whether the claimed condition is linked to a toxic exposure risk activity; it does not address — and cannot substitute for — an adequate medical opinion on the theory of entitlement the veteran actually raised: ${data.intendedTheory}. A negative or inconclusive TERA opinion therefore does not discharge VA's duty to assist as to that theory, and the claim may not be denied on the basis of an examination that never addressed the correct legal question. To the extent a § 1168 opinion is obtained, it must also consider the veteran's total potential exposure across all applicable deployments and the synergistic, combined effect of all toxic exposure risk activities; an opinion that evaluates exposures in isolation is itself inadequate.\n` : '';
+            const intendedTera = /tera|toxic exposure/i.test(data.intendedTheory || '');
+            const teraDenialText = (isTeraReq && hasIntended && !intendedTera) ? `\nHere, the AOJ has developed the claim through a toxic exposure risk activity (TERA) medical examination under 38 U.S.C. § 1168. A § 1168 examination addresses only whether the claimed condition is linked to a toxic exposure risk activity; it does not address — and cannot substitute for — an adequate medical opinion on the theory of entitlement the veteran actually raised: ${data.intendedTheory}. A negative or inconclusive TERA opinion therefore does not discharge VA's duty to assist as to that theory, and the claim may not be denied on the basis of an examination that never addressed the correct legal question. To the extent a § 1168 opinion is obtained, it must also consider the veteran's total potential exposure across all applicable deployments and the synergistic, combined effect of all toxic exposure risk activities; an opinion that evaluates exposures in isolation is itself inadequate.\n` : '';
             return `VA FORM 21-4138 - STATEMENT IN SUPPORT OF CLAIM
 
 Veteran: ${data.veteranName}
