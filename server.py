@@ -116,10 +116,11 @@ def _split_parts(data):
         if len(parts) == 3:
             out["dob_year"], out["dob_month"], out["dob_day"] = parts[0], parts[1], parts[2]
 
-    # Email longer than the first box wraps to the second line field.
+    # The two email boxes are 20-cell comb fields, so wrap at 20 chars onto the
+    # second line (EMAIL_ADDRESS[1]); together they hold up to 40 characters.
     email = (data.get("email", "") or "").strip()
-    if len(email) > 33:
-        out["email"], out["email_line2"] = email[:33], email[33:]
+    if len(email) > 20:
+        out["email"], out["email_line2"] = email[:20], email[20:40]
 
     return out
 
