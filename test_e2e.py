@@ -132,6 +132,8 @@ def run():
         "Veterans_Beneficiary_First_Name[0]": "Test",
         "Last_Name[0]": "Veteran",
         "SocialSecurityNumber_FirstThreeNumbers[0]": "000",
+    "SocialSecurityNumber_FirstThreeNumbers[1]": "000",  # page 2 continuation header
+    "SocialSecurityNumber_LastFourNumbers[1]": "0000",
         "TelephoneNumber_FirstThreeNumbers[0]": "555",
         "Veterans_DOB_Month[0]": "05",
         "MailingAddress_City[0]": "Anytown",

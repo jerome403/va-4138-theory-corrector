@@ -100,6 +100,11 @@ def _split_parts(data):
     ssn = (data.get("ssn", "") or "").replace("-", "").replace(" ", "")
     if len(ssn) >= 9:
         out["ssn_first"], out["ssn_middle"], out["ssn_last"] = ssn[:3], ssn[3:5], ssn[5:9]
+    # Mirror the SSN onto the page 2 continuation header (if we have the parts).
+    if out.get("ssn_first"):
+        out["ssn_first_p2"] = out["ssn_first"]
+        out["ssn_middle_p2"] = out.get("ssn_middle", "")
+        out["ssn_last_p2"] = out.get("ssn_last", "")
 
     phone = "".join(c for c in (data.get("phone", "") or "") if c.isdigit())
     if len(phone) >= 10:

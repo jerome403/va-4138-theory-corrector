@@ -19,6 +19,10 @@ FORM_21_4138 = {
         "ssn_first": "SocialSecurityNumber_FirstThreeNumbers[0]",
         "ssn_middle": "SocialSecurityNumber_SecondTwoNumbers[0]",
         "ssn_last": "SocialSecurityNumber_LastFourNumbers[0]",
+        # SSN repeated in the page 2 continuation header
+        "ssn_first_p2": "SocialSecurityNumber_FirstThreeNumbers[1]",
+        "ssn_middle_p2": "SocialSecurityNumber_SecondTwoNumbers[1]",
+        "ssn_last_p2": "SocialSecurityNumber_LastFourNumbers[1]",
         "va_file_number": "VA_File_Number_If_Applicable[0]",
         "dob_month": "Veterans_DOB_Month[0]",
         "dob_day": "DOB_Day[0]",
